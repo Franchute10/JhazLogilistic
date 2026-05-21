@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /portal.html
+Disallow: /portal-dashboard.html
+Disallow: /portal-envio.html
+
+Sitemap: https://jhaz.com.pe/sitemap.xml
