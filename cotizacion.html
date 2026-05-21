@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="assets/favicon-192.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<title>Cotización | Jhaz Operador Logístico</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+tailwind.config={darkMode:"class",theme:{extend:{colors:{
+  "navy-authority":"#1A365D","action-orange":"#F6AD55","steel-gray":"#4A5568",
+  "primary":"#002045","on-primary":"#ffffff","primary-fixed":"#d6e3ff",
+  "primary-fixed-dim":"#adc7f7","primary-container":"#1a365d","on-primary-container":"#86a0cd",
+  "surface":"#f7fafc","background":"#f7fafc","on-surface":"#181c1e",
+  "surface-container-lowest":"#ffffff","surface-container-low":"#f1f4f6",
+  "surface-container":"#ebeef0","surface-container-high":"#e5e9eb",
+  "outline":"#74777f","outline-variant":"#c4c6cf","on-surface-variant":"#43474e",
+  "secondary-container":"#ffb55c","tertiary":"#162132","on-tertiary":"#ffffff",
+  "tertiary-container":"#2b3648","on-tertiary-container":"#949fb4",
+  "success-green":"#38A169","error-red":"#E53E3E"
+},borderRadius:{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},
+spacing:{"container-max":"1280px","margin-mobile":"16px","gutter":"24px","margin-desktop":"32px"},
+fontFamily:{"label-md":["Inter"],"headline-lg":["Inter"],"display-lg":["Inter"],"body-md":["Inter"],"body-lg":["Inter"],"label-sm":["Inter"],"headline-md":["Inter"]},
+fontSize:{
+  "label-md":["14px",{lineHeight:"20px",letterSpacing:"0.01em",fontWeight:"500"}],
+  "display-lg":["48px",{lineHeight:"56px",letterSpacing:"-0.02em",fontWeight:"700"}],
+  "headline-lg":["32px",{lineHeight:"40px",letterSpacing:"-0.01em",fontWeight:"600"}],
+  "body-md":["16px",{lineHeight:"24px",fontWeight:"400"}],
+  "body-lg":["18px",{lineHeight:"28px",fontWeight:"400"}],
+  "label-sm":["12px",{lineHeight:"16px",letterSpacing:"0.05em",fontWeight:"600"}],
+  "headline-md":["24px",{lineHeight:"32px",fontWeight:"600"}]
+}}}}
+</script>
+<style>
+.material-symbols-outlined{font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24}
+body{font-family:'Inter',sans-serif}
+.fi{width:100%;padding:9px 12px;border:1px solid #c4c6cf;border-radius:8px;font-size:13px;font-family:inherit;color:#181c1e;background:#fff;outline:none;box-sizing:border-box}
+.fi:focus{border-color:#1A365D;box-shadow:0 0 0 2px #d6e3ff}
+.fl{display:block;font-size:12px;color:#4A5568;font-weight:500;margin-bottom:4px}
+.ff{margin-bottom:11px}
+.tog-btn{padding:6px 16px;border-radius:20px;border:1px solid #d1d9e0;font-size:12px;font-weight:600;cursor:pointer;background:#f8f9fa;color:#4A5568;transition:all .15s}
+.tog-btn.si{background:#EAF3DE;border-color:#639922;color:#27500A}
+.tog-btn.no-act{background:#FCEBEB;border-color:#E24B4A;color:#A32D2D}
+.req-card{background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:14px 16px;cursor:pointer;transition:all .15s;margin-bottom:8px}
+.req-card:hover{border-color:#1A365D;box-shadow:0 2px 8px rgba(26,54,93,.1)}
+.badge{display:inline-block;padding:2px 10px;border-radius:20px;font-size:11px;font-weight:600;white-space:nowrap}
+.estado-pendiente_costo{background:#FEF3C7;color:#92400E}
+.estado-pendiente_precio{background:#DBEAFE;color:#1E40AF}
+.estado-listo{background:#D1FAE5;color:#065F46}
+.estado-enviado{background:#F3F4F6;color:#374151}
+.spin{animation:spin 1s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+</style>
+</head>
+<body class="bg-surface text-on-surface">
+
+<!-- ═══ NAV ═══ -->
+<nav class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-4 md:px-8 h-20 bg-surface border-b border-outline-variant shadow-sm">
+  <div class="flex items-center gap-2">
+    <a href="index.html"><img src="assets/Logo_header.png" alt="Jhaz Operador Logístico" style="height:48px;border-radius:6px"></a>
+  </div>
+  <div class="hidden md:flex items-center gap-8">
+    <a class="text-steel-gray text-sm hover:text-action-orange transition-colors" href="index.html">Inicio</a>
+    <a class="text-steel-gray text-sm hover:text-action-orange transition-colors" href="servicios.html">Servicios</a>
+    <a class="text-steel-gray text-sm hover:text-action-orange transition-colors" href="nosotros.html">Nosotros</a>
+    <a class="text-action-orange font-bold border-b-2 border-action-orange pb-1 text-sm" href="cotizacion.html">Cotización</a>
+  </div>
+  <div class="flex items-center gap-2">
+    <button onclick="showShare()" class="hidden md:flex items-center gap-1.5 border border-outline-variant text-steel-gray px-3 py-2 rounded-lg text-sm hover:bg-surface-container transition">
+      <span class="material-symbols-outlined text-base">share</span> Compartir
+    </button>
+    <button onclick="openPin()" class="bg-primary text-on-primary px-5 py-2 rounded-lg text-sm font-semibold active:scale-95 transition-transform shadow-sm hover:opacity-90">
+      Acceso Equipo
+    </button>
+  </div>
+</nav>
+
+<main class="pt-20">
+<!-- ═══ HERO ═══ -->
+<section class="relative h-80 flex items-center justify-center overflow-hidden">
+  <div class="absolute inset-0 bg-navy-authority/85 z-10"></div>
+  <img class="absolute inset-0 w-full h-full object-cover object-center" alt="Puerto logístico"
+    src="https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=1400&q=80"/>
+  <div class="relative z-20 text-center px-4">
+    <h1 class="text-white font-bold text-3xl md:text-5xl mb-4 tracking-tight">Solicitar Cotización</h1>
+    <p class="text-primary-fixed-dim text-lg max-w-2xl mx-auto">Cuéntenos su requerimiento y le respondemos en el menor tiempo posible.</p>
+  </div>
+</section>
+
+<!-- ═══ FORMULARIO PÚBLICO ═══ -->
+<section class="max-w-5xl mx-auto py-12 px-4" id="public-section">
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+    <div class="lg:col-span-4 space-y-5">
+      <div class="bg-white p-7 rounded-xl shadow-sm border border-outline-variant">
+        <h2 class="font-bold text-xl text-navy-authority mb-5">Información de Contacto</h2>
+        <div class="space-y-4">
+          <div class="flex items-start gap-3"><div class="bg-primary-fixed p-2.5 rounded-lg flex-shrink-0"><span class="material-symbols-outlined text-navy-authority text-xl">call</span></div><div><p class="font-semibold text-sm text-navy-authority">WhatsApp Comercial</p><p class="text-steel-gray text-sm">933-428-035 (Frank Espinoza)</p><p class="text-steel-gray text-sm">991-913-935 (Carmen Huacho)</p></div></div>
+          <div class="flex items-start gap-3"><div class="bg-primary-fixed p-2.5 rounded-lg flex-shrink-0"><span class="material-symbols-outlined text-navy-authority text-xl">mail</span></div><div><p class="font-semibold text-sm text-navy-authority">Correo Electrónico</p><p class="text-steel-gray text-sm">comercial1@jhaz.com.pe</p></div></div>
+          <div class="flex items-start gap-3"><div class="bg-primary-fixed p-2.5 rounded-lg flex-shrink-0"><span class="material-symbols-outlined text-navy-authority text-xl">schedule</span></div><div><p class="font-semibold text-sm text-navy-authority">Horario de Atención</p><p class="text-steel-gray text-sm">Lun–Vie: 8:00am – 7:00pm</p><p class="text-steel-gray text-sm">Sáb: 9:00am – 2:00pm</p></div></div>
+        </div>
+      </div>
+      <div class="bg-navy-authority p-5 rounded-xl text-white">
+        <div class="flex items-center gap-2 mb-2"><span class="material-symbols-outlined text-action-orange text-xl">verified</span><span class="font-semibold text-sm">Respuesta garantizada</span></div>
+        <p class="text-primary-fixed-dim text-sm leading-relaxed">Respondemos toda solicitud en el menor tiempo posible durante horario de atención.</p>
+      </div>
+    </div>
+    <div class="lg:col-span-8">
+      <div class="bg-white p-7 rounded-xl shadow-sm border border-outline-variant">
+        <h2 class="font-bold text-xl text-navy-authority mb-1">Datos del Requerimiento</h2>
+        <p class="text-steel-gray text-sm mb-5">Complete el formulario y recibirá su cotización personalizada.</p>
+        <div id="pub-success" class="hidden text-center py-10">
+          <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4"><span class="material-symbols-outlined text-success-green text-4xl" style="font-variation-settings:'FILL' 1">check_circle</span></div>
+          <h3 class="font-bold text-xl text-navy-authority mb-2">¡Solicitud enviada!</h3>
+          <p class="text-steel-gray mb-5">Un estratega comercial se pondrá en contacto en <strong>a la brevedad posible</strong>.</p>
+          <button onclick="resetPubForm()" class="text-sm text-navy-authority underline">Enviar otra solicitud</button>
+        </div>
+        <form id="pub-form" onsubmit="submitPub(event)">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3">
+            <div><label class="block text-sm font-medium text-navy-authority mb-1">Nombre completo *</label><input id="p_nom" required class="w-full px-3 py-2.5 rounded-lg border border-outline-variant focus:border-navy-authority focus:ring-2 focus:ring-primary-fixed outline-none transition-all text-sm" placeholder="Ej. Mafer Portilla" type="text"/></div>
+            <div><label class="block text-sm font-medium text-navy-authority mb-1">Empresa *</label><input id="p_emp" required class="w-full px-3 py-2.5 rounded-lg border border-outline-variant focus:border-navy-authority focus:ring-2 focus:ring-primary-fixed outline-none transition-all text-sm" placeholder="Ej. 2AT Group" type="text"/></div>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3">
+            <div><label class="block text-sm font-medium text-navy-authority mb-1">WhatsApp / Celular *</label><input id="p_tel" required class="w-full px-3 py-2.5 rounded-lg border border-outline-variant focus:border-navy-authority focus:ring-2 focus:ring-primary-fixed outline-none transition-all text-sm" placeholder="+51 9XX XXX XXX" type="tel"/></div>
+            <div><label class="block text-sm font-medium text-navy-authority mb-1">Correo electrónico</label><input id="p_email" class="w-full px-3 py-2.5 rounded-lg border border-outline-variant focus:border-navy-authority focus:ring-2 focus:ring-primary-fixed outline-none transition-all text-sm" placeholder="correo@empresa.com" type="email"/></div>
+          </div>
+          <hr class="border-outline-variant my-4"/>
+          <div class="mb-3"><label class="block text-sm font-medium text-navy-authority mb-1">Tipo de servicio *</label>
+            <select id="p_srv" required class="w-full px-3 py-2.5 rounded-lg border border-outline-variant focus:border-navy-authority outline-none transition-all text-sm"><option value="">— Seleccionar —</option><option>FCL — Contenedor completo</option><option>LCL — Carga suelta</option><option>Carga Nacional</option><option>Carga Sobredimensionada</option><option>Carga Refrigerada</option><option>MATPEL / IQBF</option><option>Otro</option></select>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3">
+            <div><label class="block text-sm font-medium text-navy-authority mb-1">Punto de carga (origen) *</label><input id="p_ori" required class="w-full px-3 py-2.5 rounded-lg border border-outline-variant focus:border-navy-authority focus:ring-2 focus:ring-primary-fixed outline-none transition-all text-sm" placeholder="Ej. Puerto Matarani, Arequipa" type="text"/></div>
+            <div><label class="block text-sm font-medium text-navy-authority mb-1">Destino *</label><input id="p_dst" required class="w-full px-3 py-2.5 rounded-lg border border-outline-variant focus:border-navy-authority focus:ring-2 focus:ring-primary-fixed outline-none transition-all text-sm" placeholder="Ej. El Algarrobal, Ilo, Moquegua" type="text"/></div>
+          </div>
+          <div class="grid grid-cols-3 gap-3 mb-3">
+            <div><label class="block text-sm font-medium text-navy-authority mb-1">Tipo de carga</label><input id="p_car" class="w-full px-3 py-2.5 rounded-lg border border-outline-variant focus:border-navy-authority focus:ring-2 focus:ring-primary-fixed outline-none transition-all text-sm" placeholder="Ej. Paneles solares" type="text"/></div>
+            <div><label class="block text-sm font-medium text-navy-authority mb-1">Peso est. (TN)</label><input id="p_pes" class="w-full px-3 py-2.5 rounded-lg border border-outline-variant outline-none transition-all text-sm" placeholder="Ej. 25" type="number" min="0" step="0.5"/></div>
+            <div><label class="block text-sm font-medium text-navy-authority mb-1">Cantidad</label><input id="p_can" class="w-full px-3 py-2.5 rounded-lg border border-outline-variant outline-none transition-all text-sm" placeholder="Ej. 5" type="number" min="1"/></div>
+          </div>
+          <div class="grid grid-cols-2 gap-3 mb-4">
+            <div><label class="block text-sm font-medium text-navy-authority mb-1">Fecha estimada</label><input id="p_fec" class="w-full px-3 py-2.5 rounded-lg border border-outline-variant outline-none transition-all text-sm" type="date"/></div>
+            <div><label class="block text-sm font-medium text-navy-authority mb-1">Valor carga (USD)</label><input id="p_val" class="w-full px-3 py-2.5 rounded-lg border border-outline-variant outline-none transition-all text-sm" placeholder="Opcional" type="number" min="0"/></div>
+          </div>
+          <div class="mb-5"><label class="block text-sm font-medium text-navy-authority mb-1">Información adicional</label><textarea id="p_not" class="w-full px-3 py-2.5 rounded-lg border border-outline-variant focus:border-navy-authority outline-none transition-all text-sm" rows="2" placeholder="Tipo de contenedor, dimensiones, permisos especiales..."></textarea></div>
+          <button type="submit" id="pub-btn" class="w-full bg-action-orange text-navy-authority font-bold text-sm py-3.5 rounded-lg shadow hover:shadow-md active:scale-[0.98] transition-all flex items-center justify-center gap-2">
+            <span class="material-symbols-outlined text-lg">send</span> Enviar Solicitud de Cotización
+          </button>
+          <p class="text-center text-xs text-steel-gray mt-2">Le responderemos en el menor tiempo posible en horario de atención.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="bg-tertiary text-on-tertiary mt-8">
+  <div class="w-full py-10 px-4 md:px-8 flex flex-col md:flex-row justify-between items-start md:items-center max-w-5xl mx-auto border-t border-outline/10">
+    <div class="mb-6 md:mb-0"><span class="text-lg font-bold">Jhaz Operador Logístico S.A.C.</span><p class="text-on-tertiary-container text-sm mt-1 max-w-sm">Confianza que llega a destino</p><p class="text-on-tertiary-container text-xs mt-1">© 2026 Jhaz Operador Logístico S.A.C.</p></div>
+    <div class="flex flex-wrap gap-6"><a href="index.html" class="text-on-tertiary-container hover:text-white text-xs">Inicio</a><a href="servicios.html" class="text-on-tertiary-container hover:text-white text-xs">Servicios</a><a href="nosotros.html" class="text-on-tertiary-container hover:text-white text-xs">Nosotros</a></div>
+    <div class="text-xs text-on-tertiary-container mt-4 md:mt-0">comercial1@jhaz.com.pe<br/>933-428-035 · San Miguel, Lima</div>
+  </div>
+</footer>
+
+<!-- ═══ SHARE MODAL ═══ -->
+<div id="share-modal" class="hidden fixed inset-0 bg-navy-authority/90 flex items-center justify-center px-4" style="z-index:9999">
+  <div class="bg-white rounded-2xl p-7 w-full max-w-sm shadow-2xl">
+    <div class="flex items-center justify-between mb-5">
+      <h3 class="font-bold text-lg text-navy-authority">Compartir formulario</h3>
+      <button onclick="const m=document.getElementById('share-modal');m.classList.add('hidden');m.style.display='none'" class="text-steel-gray hover:text-navy-authority"><span class="material-symbols-outlined">close</span></button>
+    </div>
+    <p class="text-sm text-steel-gray mb-4">Comparte este link con clientes o con el equipo para que ingresen sus solicitudes.</p>
+    <div class="bg-surface-container rounded-xl p-3 flex items-center gap-2 mb-4">
+      <input id="share-url" readonly class="flex-1 bg-transparent text-xs text-navy-authority font-mono outline-none overflow-hidden text-ellipsis"/>
+      <button onclick="copyShareUrl()" class="bg-navy-authority text-white text-xs font-semibold px-3 py-1.5 rounded-lg flex-shrink-0 hover:opacity-90" id="copy-share-btn">Copiar</button>
+    </div>
+    <div class="border border-outline-variant rounded-xl p-4 text-center mb-4">
+      <p class="text-xs text-steel-gray mb-3">Código QR para compartir</p>
+      <img id="qr-img" class="mx-auto w-40 h-40 rounded-lg" alt="QR Code"/>
+      <p class="text-xs text-steel-gray mt-2">Escanear con el celular</p>
+    </div>
+    <div class="bg-amber-50 border border-amber-200 rounded-xl p-3">
+      <p class="text-xs font-semibold text-amber-800 mb-1">💡 Link corto recomendado</p>
+      <p class="text-xs text-amber-700">Crea un link fácil de recordar en <strong>bit.ly</strong> (gratis) y compártelo como: <code class="bg-white px-1 rounded">bit.ly/jhaz-cotiza</code></p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ PIN MODAL ═══ -->
+<div id="pin-modal" class="hidden fixed inset-0 bg-navy-authority/95 flex items-center justify-center px-4" style="z-index:9998">
+  <div class="bg-white rounded-2xl p-8 w-full max-w-sm text-center shadow-2xl">
+    <div class="w-14 h-14 bg-navy-authority rounded-xl flex items-center justify-center mx-auto mb-4"><span class="material-symbols-outlined text-action-orange text-3xl">lock</span></div>
+    <h3 class="font-bold text-xl text-navy-authority mb-1">Acceso Equipo Jhaz</h3>
+    <p class="text-steel-gray text-sm mb-5">Ingresa tu código de acceso</p>
+    <input id="pin-inp" type="password" placeholder="Código de acceso" maxlength="20"
+      class="w-full px-4 py-3 rounded-lg border border-outline-variant text-center text-lg tracking-widest mb-2 focus:border-navy-authority focus:ring-2 focus:ring-primary-fixed outline-none"
+      onkeydown="if(event.key==='Enter')doPin()"/>
+    <p id="pin-err" class="text-error-red text-sm mb-3 hidden">Código incorrecto</p>
+    <div class="flex gap-3">
+      <button onclick="closePin()" class="flex-1 py-3 rounded-lg border border-outline-variant text-steel-gray text-sm font-medium hover:bg-surface-container transition">Cancelar</button>
+      <button onclick="doPin()" class="flex-1 py-3 rounded-lg bg-navy-authority text-white text-sm font-bold hover:opacity-90 transition">Ingresar</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SISTEMA INTERNO ═══ -->
+<div id="sys-modal" class="hidden fixed inset-0 z-40 bg-surface overflow-y-auto">
+  <!-- Sys Nav -->
+  <div class="sticky top-0 z-10 bg-navy-authority shadow-lg flex items-center justify-between px-5 py-3">
+    <div class="flex items-center gap-3">
+      <img src="assets/Logo_header.png" alt="Jhaz" style="height:40px;border-radius:6px">
+      <div><p class="text-white font-semibold text-sm">Sistema de Cotizaciones</p><p class="text-white/50 text-xs" id="sys-role-label">—</p></div>
+    </div>
+    <div class="flex items-center gap-3">
+      <button onclick="loadData()" class="text-white/70 hover:text-white text-xs border border-white/20 px-3 py-1.5 rounded-lg flex items-center gap-1"><span class="material-symbols-outlined text-sm">refresh</span> Actualizar</button>
+      <button onclick="closeSys()" class="text-white/70 hover:text-white"><span class="material-symbols-outlined">close</span></button>
+    </div>
+  </div>
+
+  <!-- Loading -->
+  <div id="sys-loading" class="flex flex-col items-center justify-center py-20">
+    <span class="material-symbols-outlined text-4xl text-navy-authority spin">autorenew</span>
+    <p class="text-steel-gray mt-3 text-sm">Cargando datos...</p>
+  </div>
+
+  <!-- Error de conexión -->
+  <div id="sys-error" class="hidden max-w-md mx-auto mt-16 text-center px-4">
+    <span class="material-symbols-outlined text-5xl text-error-red">wifi_off</span>
+    <p class="font-semibold text-navy-authority mt-3">Sin conexión al servidor</p>
+    <p class="text-steel-gray text-sm mt-1">Verifica que el SCRIPT_URL esté configurado correctamente.</p>
+    <button onclick="loadData()" class="mt-4 bg-navy-authority text-white px-5 py-2 rounded-lg text-sm font-semibold">Reintentar</button>
+  </div>
+
+  <!-- ── VISTA COMERCIAL ── -->
+  <div id="view-comercial" class="hidden max-w-2xl mx-auto px-4 py-5">
+    <div class="flex items-center justify-between mb-4">
+      <h2 class="text-lg font-bold text-navy-authority">📋 Mis solicitudes</h2>
+      <button onclick="showNewForm()" class="bg-navy-authority text-white px-4 py-2 rounded-lg text-sm font-semibold flex items-center gap-1 hover:opacity-90 transition"><span class="material-symbols-outlined text-lg">add</span> Nuevo requerimiento</button>
+    </div>
+    <!-- Tabs -->
+    <div class="flex border border-outline-variant rounded-xl overflow-hidden mb-4 bg-white">
+      <button onclick="showComTab('pendientes')" id="ct-pend" class="flex-1 py-2.5 text-sm font-semibold border-r border-outline-variant bg-navy-authority text-white">En proceso</button>
+      <button onclick="showComTab('listos')" id="ct-list" class="flex-1 py-2.5 text-sm font-semibold border-r border-outline-variant text-steel-gray hover:bg-surface-container">Listos para enviar</button>
+      <button onclick="showComTab('historial')" id="ct-hist" class="flex-1 py-2.5 text-sm font-semibold text-steel-gray hover:bg-surface-container">📂 Historial</button>
+    </div>
+    <div id="com-pend-list"></div>
+    <div id="com-list-list" class="hidden"></div>
+    <div id="com-hist-list" class="hidden">
+      <div class="flex gap-2 mb-3">
+        <div class="relative flex-1">
+          <span class="material-symbols-outlined absolute left-3 top-2.5 text-steel-gray text-lg">search</span>
+          <input id="hist-search" type="text" placeholder="Buscar por destino, cliente o carga..." oninput="filterHistory()"
+            class="w-full pl-9 pr-3 py-2.5 rounded-xl border border-outline-variant text-sm focus:border-navy-authority focus:ring-2 focus:ring-primary-fixed outline-none"/>
+        </div>
+      </div>
+      <div id="hist-cards"></div>
+    </div>
+  </div>
+
+  <!-- ── FORMULARIO NUEVO REQUERIMIENTO (Comercial) ── -->
+  <div id="view-new-req" class="hidden max-w-2xl mx-auto px-4 py-5">
+    <div class="flex items-center gap-3 mb-4">
+      <button onclick="showView('comercial')" class="p-2 rounded-lg hover:bg-surface-container transition"><span class="material-symbols-outlined text-steel-gray">arrow_back</span></button>
+      <h2 class="text-lg font-bold text-navy-authority">Nuevo Requerimiento</h2>
+    </div>
+    <div class="bg-white border border-outline-variant rounded-xl p-5 mb-3">
+      <p class="text-xs font-bold text-steel-gray uppercase tracking-widest mb-4">👤 Identificación</p>
+      <div class="grid grid-cols-2 gap-3">
+        <div class="ff"><label class="fl">N° Propuesta</label><input class="fi" id="n_prop" value="051"/></div>
+        <div class="ff"><label class="fl">Comercial</label><input class="fi" id="n_com" value="Frank Espinoza"/></div>
+        <div class="ff"><label class="fl">Cliente / empresa</label><input class="fi" id="n_cli" placeholder="Empresa del cliente"/></div>
+        <div class="ff"><label class="fl">Atención / contacto</label><input class="fi" id="n_ate" placeholder="Nombre del contacto"/></div>
+      </div>
+    </div>
+    <div class="bg-white border border-outline-variant rounded-xl p-5 mb-3">
+      <p class="text-xs font-bold text-steel-gray uppercase tracking-widest mb-4">📍 Ruta</p>
+      <div class="ff"><label class="fl">Punto de carga (origen)</label><input class="fi" id="n_ori" placeholder="Ej. Matarani, Islay, Arequipa"/></div>
+      <div class="ff"><label class="fl">Destino</label><input class="fi" id="n_dst" placeholder="Ej. El Algarrobal, Ilo, Moquegua"/></div>
+      <div class="grid grid-cols-2 gap-3">
+        <div class="ff"><label class="fl">Fecha de carga</label><input class="fi" id="n_fec" placeholder="Ej. Fines Junio 2026"/></div>
+        <div class="ff"><label class="fl">Cantidad de unidades</label><input class="fi" id="n_can" type="number" value="1" min="1"/></div>
+      </div>
+    </div>
+    <div class="bg-white border border-outline-variant rounded-xl p-5 mb-3">
+      <p class="text-xs font-bold text-steel-gray uppercase tracking-widest mb-4">🚛 Carga y unidad</p>
+      <div class="grid grid-cols-2 gap-3">
+        <div class="ff"><label class="fl">Tipo de carga</label><input class="fi" id="n_car" placeholder="Ej. Paneles Solares"/></div>
+        <div class="ff"><label class="fl">Tipo de unidad</label><select class="fi" id="n_uni"><option>Tracto T3</option><option>Tracto T2</option><option>Camión C2</option><option>Camión C3</option><option>Cama baja</option><option>Plataforma</option></select></div>
+        <div class="ff"><label class="fl">Semiremolque</label><select class="fi" id="n_sem"><option>Semirremolque S3</option><option>Semirremolque S2</option><option>Plataforma PL</option><option>Cama baja CB3</option><option>Furgón</option><option>No aplica</option></select></div>
+        <div class="ff"><label class="fl">Permisos MTC/MATPEL/IQBF</label><input class="fi" id="n_per" placeholder="Si aplica"/></div>
+      </div>
+      <div class="grid grid-cols-4 gap-2">
+        <div class="ff"><label class="fl">Largo (m)</label><input class="fi" id="n_lar" type="number" step="0.1" placeholder="0.0"/></div>
+        <div class="ff"><label class="fl">Ancho (m)</label><input class="fi" id="n_anc" type="number" step="0.1" placeholder="0.0"/></div>
+        <div class="ff"><label class="fl">Alto (m)</label><input class="fi" id="n_alt" type="number" step="0.1" placeholder="0.0"/></div>
+        <div class="ff"><label class="fl">Peso/und (TN)</label><input class="fi" id="n_pes" type="number" step="0.5" placeholder="0"/></div>
+      </div>
+      <div class="grid grid-cols-2 gap-3 mt-1">
+        <div class="ff"><label class="fl">Estiba / Desestiba</label><div class="flex gap-2"><button class="tog-btn si" id="te_s" onclick="tog('est','SI')">SI</button><button class="tog-btn" id="te_n" onclick="tog('est','NO')">NO</button></div></div>
+        <div class="ff"><label class="fl">Servicio de escolta</label><div class="flex gap-2"><button class="tog-btn" id="tesc_s" onclick="tog('esc','SI')">SI</button><button class="tog-btn no-act" id="tesc_n" onclick="tog('esc','NO')">NO</button></div></div>
+      </div>
+    </div>
+    <div class="bg-white border border-outline-variant rounded-xl p-5 mb-4">
+      <p class="text-xs font-bold text-steel-gray uppercase tracking-widest mb-3">📝 Adicionales</p>
+      <textarea class="fi" id="n_add" style="min-height:60px" placeholder="Instrucciones especiales, número de contenedores, observaciones..."></textarea>
+    </div>
+    <button onclick="saveNewReq()" id="save-req-btn" class="w-full py-3.5 bg-navy-authority text-white font-bold rounded-xl hover:opacity-90 transition flex items-center justify-center gap-2">
+      <span class="material-symbols-outlined">save</span> Guardar y enviar a Operaciones
+    </button>
+    <div id="save-req-msg" class="hidden mt-3 p-3 bg-green-50 border border-green-200 rounded-xl text-sm text-green-800 text-center font-semibold"></div>
+  </div>
+
+  <!-- ── DETALLE / COTIZACIÓN (Comercial) ── -->
+  <div id="view-quote" class="hidden max-w-2xl mx-auto px-4 py-5">
+    <div class="flex items-center gap-3 mb-4">
+      <button onclick="showView('comercial')" class="p-2 rounded-lg hover:bg-surface-container transition"><span class="material-symbols-outlined text-steel-gray">arrow_back</span></button>
+      <h2 class="text-lg font-bold text-navy-authority">Cotización generada</h2>
+    </div>
+    <div class="flex gap-3 mb-4">
+      <button onclick="printQ()" class="flex-1 py-3 bg-navy-authority text-white font-bold rounded-xl text-sm flex items-center justify-center gap-2 hover:opacity-90"><span class="material-symbols-outlined text-lg">print</span> Imprimir / PDF</button>
+      <button onclick="copyQ()" class="flex-1 py-3 bg-action-orange text-navy-authority font-bold rounded-xl text-sm flex items-center justify-center gap-2 hover:opacity-90"><span class="material-symbols-outlined text-lg">content_copy</span><span id="cq-lbl">Copiar texto</span></button>
+    </div>
+    <div id="quote-doc" class="bg-white border border-gray-200 rounded-2xl shadow-sm p-7"></div>
+    <button onclick="markSent()" id="mark-sent-btn" class="mt-4 w-full py-3 border-2 border-success-green text-success-green font-bold rounded-xl text-sm hover:bg-green-50 transition">✓ Marcar como enviada al cliente</button>
+  </div>
+
+  <!-- ── VISTA OPERACIONES ── -->
+  <div id="view-operaciones" class="hidden max-w-2xl mx-auto px-4 py-5">
+    <h2 class="text-lg font-bold text-navy-authority mb-1">⚙️ Pendientes de Costo</h2>
+    <p class="text-sm text-steel-gray mb-4">Selecciona un requerimiento para ingresar el costo del flete.</p>
+    <div id="ops-list"></div>
+  </div>
+
+  <!-- ── FORMULARIO COSTO (Operaciones) ── -->
+  <div id="view-ops-form" class="hidden max-w-2xl mx-auto px-4 py-5">
+    <div class="flex items-center gap-3 mb-4">
+      <button onclick="showView('operaciones')" class="p-2 rounded-lg hover:bg-surface-container transition"><span class="material-symbols-outlined text-steel-gray">arrow_back</span></button>
+      <h2 class="text-lg font-bold text-navy-authority">Ingresar costo del flete</h2>
+    </div>
+    <div class="bg-blue-50 border border-blue-200 rounded-xl p-4 mb-4" id="ops-req-detail"></div>
+    <div class="bg-white border border-outline-variant rounded-xl p-5 mb-4">
+      <p class="text-xs font-bold text-steel-gray uppercase tracking-widest mb-4">💰 Datos de costo</p>
+      <div class="grid grid-cols-2 gap-3">
+        <div class="ff"><label class="fl">Costo por unidad (sin IGV) *</label><div class="flex gap-2"><select class="fi" id="o_mon" style="width:72px"><option>S/.</option><option>USD</option></select><input class="fi" id="o_cos" type="number" step="0.01" placeholder="0.00"/></div></div>
+        <div class="ff"><label class="fl">Sobreestadía / día / unidad (S/.)</label><input class="fi" id="o_sob" type="number" value="500"/></div>
+      </div>
+      <div class="ff"><label class="fl">Tiempo de tránsito (días)</label><input class="fi" id="o_tra" type="number" value="2" style="width:160px"/></div>
+      <div class="ff"><label class="fl">Notas para la dueña (condiciones especiales)</label><textarea class="fi" id="o_not" style="min-height:60px" placeholder="Requiere equipo especial, peajes incluidos, etc."></textarea></div>
+    </div>
+    <button onclick="saveOps()" class="w-full py-3.5 bg-navy-authority text-white font-bold rounded-xl hover:opacity-90 transition">Guardar costo y pasar a Aprobación</button>
+    <div id="ops-save-msg" class="hidden mt-3 p-3 bg-green-50 border border-green-200 rounded-xl text-sm text-green-800 text-center font-semibold"></div>
+  </div>
+
+  <!-- ── VISTA DUEÑA ── -->
+  <div id="view-duena" class="hidden max-w-2xl mx-auto px-4 py-5">
+    <h2 class="text-lg font-bold text-navy-authority mb-1">✅ Pendientes de Precio</h2>
+    <p class="text-sm text-steel-gray mb-4">Selecciona un requerimiento para aprobar el precio final.</p>
+    <div id="dna-list"></div>
+  </div>
+
+  <!-- ── FORMULARIO PRECIO (Dueña) ── -->
+  <div id="view-dna-form" class="hidden max-w-2xl mx-auto px-4 py-5">
+    <div class="flex items-center gap-3 mb-4">
+      <button onclick="showView('duena')" class="p-2 rounded-lg hover:bg-surface-container transition"><span class="material-symbols-outlined text-steel-gray">arrow_back</span></button>
+      <h2 class="text-lg font-bold text-navy-authority">Aprobar precio final</h2>
+    </div>
+    <div class="bg-blue-50 border border-blue-200 rounded-xl p-4 mb-3" id="dna-req-detail"></div>
+    <div class="bg-green-50 border border-green-200 rounded-xl p-4 mb-4" id="dna-ops-detail"></div>
+    <div class="bg-white border border-outline-variant rounded-xl p-5 mb-4">
+      <p class="text-xs font-bold text-steel-gray uppercase tracking-widest mb-4">💵 Precio final</p>
+      <div class="grid grid-cols-2 gap-3">
+        <div class="ff"><label class="fl">Precio por unidad (sin IGV) *</label><div class="flex gap-2"><select class="fi" id="w_mon" style="width:72px"><option>S/.</option><option>USD</option></select><input class="fi" id="w_pre" type="number" step="0.01" placeholder="0.00" oninput="calcMgn()"/></div></div>
+        <div class="ff"><label class="fl">Margen</label><div class="fi flex items-center font-bold" id="mgn-box" style="background:#f0f4f8;color:#4A5568;cursor:default">—</div></div>
+      </div>
+      <div id="totals-box" class="hidden grid grid-cols-2 gap-3 mb-3">
+        <div class="rounded-lg p-3 bg-green-50"><p class="text-xs text-steel-gray mb-1" id="tot-lbl">Total</p><p class="font-bold text-navy-authority" id="tot-val">—</p></div>
+        <div class="rounded-lg p-3" id="util-box"><p class="text-xs text-steel-gray mb-1">Utilidad total</p><p class="font-bold" id="util-val">—</p></div>
+      </div>
+      <div class="grid grid-cols-2 gap-3">
+        <div class="ff"><label class="fl">Crédito</label><select class="fi" id="w_cre"><option>Contado</option><option>15 días</option><option selected>30 días</option><option>45 días</option><option>60 días</option></select></div>
+        <div class="ff"><label class="fl">Oferta válida</label><select class="fi" id="w_val"><option>03 días</option><option>05 días</option><option selected>07 días</option><option>10 días</option><option>15 días</option></select></div>
+      </div>
+      <div class="ff"><label class="fl">Notas para la cotización</label><textarea class="fi" id="w_not" style="min-height:55px" placeholder="Tarifa incluye peajes, sujeto a disponibilidad..."></textarea></div>
+    </div>
+    <button onclick="saveDna()" class="w-full py-3.5 font-bold rounded-xl text-white transition" style="background:#27500A">Aprobar precio y generar cotización</button>
+    <div id="dna-save-msg" class="hidden mt-3 p-3 bg-green-50 border border-green-200 rounded-xl text-sm text-green-800 text-center font-semibold"></div>
+  </div>
+
+</div><!-- /sys-modal -->
+
+<script>
+// ═══════════════════════════════════════
+// CONFIG — CAMBIA ESTOS VALORES
+// ═══════════════════════════════════════
+const SCRIPT_URL  = 'https://script.google.com/macros/s/AKfycbx_viC-5lFNNGX_5cu8KBZfjV1DUc2E9D_48tlQ-5A-f3UBsZkuzF4-Aooj7MVq6cfSyg/exec'; // ← URL del web app de Google
+const FORMSPREE   = 'xaqknqkw';                    // ← Ya configurado
+const ROLES = {
+  'JHAZ2026':  'comercial',    // Frank — crea requerimientos y descarga cotizaciones
+  'OPS2026':   'operaciones',  // Equipo ops — ingresa costos
+  'DUENA2026': 'duena'         // Dueña — aprueba precios finales
+};
+// ═══════════════════════════════════════
+
+// Detección de modo demo (sin backend configurado)
+const USE_LOCAL = !SCRIPT_URL || SCRIPT_URL === 'TU_URL_DE_APPS_SCRIPT_AQUI';
+
+// Datos de demo (se usan cuando no hay backend configurado)
+const DEMO_SEED = [
+  {id:'d1',propNum:'051',comercial:'Frank Espinoza',cliente:'2AT Group',atencion:'Mafer Portilla',
+   origen:'Matarani, Islay, Arequipa',destino:'El Algarrobal, Ilo, Moquegua',
+   carga:'Paneles Solares',unidad:'Tracto T3',semirremolque:'Semirremolque S3',
+   cantidad:'5',peso:'25',largo:'12.5',ancho:'2.6',alto:'2.5',
+   fechaCarga:'Fines de Junio 2026',permisos:'',estiba:'NO',escolta:'NO',
+   adicionales:"5 contenedores 40 HQ — Valor USD 50,000/cntr",
+   costoUnit:'2800',monedaOps:'S/.',sobreestadia:'500',transitoDias:'2',notasOps:'',
+   precioUnit:'3500',monedaPrecio:'S/.',credito:'30 días',validez:'07 días',notasDuena:'',
+   estado:'listo',fecha:'18/05/2026'},
+  {id:'d2',propNum:'052',comercial:'Frank Espinoza',cliente:'Cidelsa',atencion:'Javier Ramírez',
+   origen:'Callao, Lima',destino:'Arequipa, Arequipa',
+   carga:'Estructuras metálicas',unidad:'Tracto T3',semirremolque:'Plataforma PL',
+   cantidad:'2',peso:'18',largo:'14',ancho:'2.4',alto:'2.2',fechaCarga:'25/05/2026',
+   permisos:'Permiso MTC',estiba:'SI',escolta:'NO',adicionales:'',
+   costoUnit:'3200',monedaOps:'S/.',sobreestadia:'400',transitoDias:'3',notasOps:'Requiere escolta policial',
+   precioUnit:'',monedaPrecio:'S/.',credito:'',validez:'',notasDuena:'',
+   estado:'pendiente_precio',fecha:'17/05/2026'},
+  {id:'d3',propNum:'053',comercial:'Frank Espinoza',cliente:'Acciona Perú',atencion:'Luis Saenz',
+   origen:'Ilo, Moquegua',destino:'Marcona, Ica',
+   carga:'Componentes parque eólico',unidad:'Cama baja',semirremolque:'Cama baja CB3',
+   cantidad:'3',peso:'40',largo:'18',ancho:'3.2',alto:'4.2',fechaCarga:'Junio 2026',
+   permisos:'MTC sobredimensionada',estiba:'NO',escolta:'SI',adicionales:'',
+   costoUnit:'',monedaOps:'S/.',sobreestadia:'800',transitoDias:'4',notasOps:'',
+   precioUnit:'',monedaPrecio:'S/.',credito:'',validez:'',notasDuena:'',
+   estado:'pendiente_costo',fecha:'16/05/2026'}
+,
+  // Historial — cotizaciones ya enviadas (rutas de referencia)
+  {id:'h1',propNum:'048',comercial:'Frank Espinoza',cliente:'Ferreyros S.A.',atencion:'Carlos Vega',
+   origen:'Callao, Lima',destino:'Matarani, Islay, Arequipa',
+   carga:'Maquinaria pesada',unidad:'Cama baja',semirremolque:'Cama baja CB3',
+   cantidad:'1',peso:'45',largo:'18',ancho:'3.0',alto:'3.8',fechaCarga:'05/05/2026',
+   permisos:'MTC sobredimensionada',estiba:'NO',escolta:'SI',adicionales:'',
+   costoUnit:'4500',monedaOps:'S/.',sobreestadia:'800',transitoDias:'3',notasOps:'',
+   precioUnit:'5800',monedaPrecio:'S/.',credito:'30 días',validez:'07 días',notasDuena:'',
+   estado:'enviado',fecha:'05/05/2026'},
+  {id:'h2',propNum:'046',comercial:'Frank Espinoza',cliente:'Minera Las Bambas',atencion:'Ana Torres',
+   origen:'Callao, Lima',destino:'Tambobamba, Cotabambas, Apurímac',
+   carga:'Repuestos industriales',unidad:'Tracto T3',semirremolque:'Semirremolque S3',
+   cantidad:'3',peso:'20',largo:'12',ancho:'2.4',alto:'2.2',fechaCarga:'28/04/2026',
+   permisos:'',estiba:'NO',escolta:'NO',adicionales:'',
+   costoUnit:'3800',monedaOps:'S/.',sobreestadia:'600',transitoDias:'4',notasOps:'',
+   precioUnit:'4800',monedaPrecio:'S/.',credito:'45 días',validez:'07 días',notasDuena:'',
+   estado:'enviado',fecha:'28/04/2026'},
+  {id:'h3',propNum:'043',comercial:'Frank Espinoza',cliente:'Energía Renovable SAC',atencion:'Jorge Díaz',
+   origen:'Callao, Lima',destino:'Ilo, Moquegua',
+   carga:'Componentes eólicos',unidad:'Plataforma',semirremolque:'Plataforma PL',
+   cantidad:'4',peso:'30',largo:'16',ancho:'2.8',alto:'3.5',fechaCarga:'15/04/2026',
+   permisos:'MTC sobredimensionada',estiba:'NO',escolta:'SI',adicionales:'',
+   costoUnit:'3200',monedaOps:'S/.',sobreestadia:'600',transitoDias:'3',notasOps:'',
+   precioUnit:'4100',monedaPrecio:'S/.',credito:'30 días',validez:'07 días',notasDuena:'',
+   estado:'enviado',fecha:'15/04/2026'},
+  {id:'h4',propNum:'040',comercial:'Frank Espinoza',cliente:'Aceros Arequipa',atencion:'Luis Paredes',
+   origen:'Pisco, Ica',destino:'Arequipa, Arequipa',
+   carga:'Bobinas de acero',unidad:'Tracto T3',semirremolque:'Semirremolque S3',
+   cantidad:'6',peso:'28',largo:'12',ancho:'2.5',alto:'2.2',fechaCarga:'08/04/2026',
+   permisos:'',estiba:'SI',escolta:'NO',adicionales:'',
+   costoUnit:'2400',monedaOps:'S/.',sobreestadia:'400',transitoDias:'2',notasOps:'',
+   precioUnit:'3100',monedaPrecio:'S/.',credito:'30 días',validez:'05 días',notasDuena:'',
+   estado:'enviado',fecha:'08/04/2026'}
+];
+
+function seedDemoData(){
+  if(!localStorage.getItem('jhaz_demo_seeded')){
+    localStorage.setItem('jhaz_reqs',JSON.stringify(DEMO_SEED));
+    localStorage.setItem('jhaz_demo_seeded','1');
+  }
+}
+
+const months=['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+const todayStr=()=>{const d=new Date();return `${d.getDate()} de ${months[d.getMonth()]} de ${d.getFullYear()}`;};
+const fmt=v=>parseFloat(v||0).toLocaleString('es-PE',{minimumFractionDigits:2,maximumFractionDigits:2});
+const gv=id=>(document.getElementById(id)||{}).value||'';
+const TERMS=['Tarifa no incluye IGV.','Unidades con GPS y equipo de comunicación.','Conductores con documentos en regla según disposición del MTC.','Documentos solicitados según requerimiento del cliente.',"Personal con EPP's y SCTR.",'No incluye carga y/o descarga ni resguardo. En caso sea solicitado, se contratará previa autorización del cliente.'];
+
+let role='', togV={est:'NO',esc:'NO'}, currentReq=null, allRequests=[];
+
+// ── PIN ──
+function openPin(){document.getElementById('pin-modal').classList.remove('hidden');setTimeout(()=>document.getElementById('pin-inp').focus(),100);}
+function closePin(){document.getElementById('pin-modal').classList.add('hidden');document.getElementById('pin-inp').value='';document.getElementById('pin-err').classList.add('hidden');}
+function doPin(){
+  const val=gv('pin-inp');
+  role=ROLES[val]||'';
+  if(!role){document.getElementById('pin-err').classList.remove('hidden');document.getElementById('pin-inp').value='';return;}
+  closePin();
+  document.getElementById('sys-modal').classList.remove('hidden');
+  document.getElementById('sys-role-label').textContent={comercial:'Estratega Comercial — Frank Espinoza',operaciones:'Equipo de Operaciones',duena:'Dirección — Aprobación de precios'}[role]||'';
+  loadData();
+}
+function closeSys(){document.getElementById('sys-modal').classList.add('hidden');}
+
+// ── NAVEGACIÓN ──
+const VIEWS=['comercial','new-req','quote','operaciones','ops-form','duena','dna-form'];
+function showView(v){
+  VIEWS.forEach(x=>{const el=document.getElementById('view-'+x);if(el)el.classList.add('hidden');});
+  const el=document.getElementById('view-'+v);if(el)el.classList.remove('hidden');
+}
+function readyCard(r){
+  return `<div class="bg-white border-2 border-green-400 rounded-xl p-4 mb-3 cursor-pointer hover:shadow-md transition" onclick="handleCard('${r.id}','Ver')">
+    <div class="flex items-start justify-between gap-3">
+      <div class="flex-1">
+        <div class="flex items-center gap-2 mb-1 flex-wrap">
+          <span class="material-symbols-outlined text-success-green text-lg" style="font-variation-settings:'FILL' 1">check_circle</span>
+          <span class="font-bold text-navy-authority text-sm">REQ ${r.propNum}</span>
+          <span class="font-semibold text-sm">${r.cliente}</span>
+        </div>
+        <p class="text-xs text-steel-gray">${r.origen||'—'} → ${r.destino||'—'}</p>
+        <p class="text-xs text-steel-gray">${r.carga} | ${r.cantidad} × ${r.unidad}</p>
+        <p class="text-xs font-semibold text-green-700 mt-1">${r.monedaPrecio||'S/.'} ${fmt(r.precioUnit)}/und → Total: ${r.monedaPrecio||'S/.'} ${fmt(parseFloat(r.precioUnit||0)*parseInt(r.cantidad||1))}</p>
+      </div>
+      <button class="flex-shrink-0 bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-xl text-xs font-bold flex flex-col items-center gap-1 transition">
+        <span class="material-symbols-outlined text-lg">picture_as_pdf</span>Descargar
+      </button>
+    </div>
+  </div>`;
+}
+function handleCard(id,action){
+  const r=allRequests.find(x=>String(x.id)===String(id));
+  if(!r)return;
+  if(action==='Ingresar costo')openOpsForm(r);
+  else if(action==='Aprobar precio')openDnaForm(r);
+  else openQuote(r);
+}
+function showNewForm(){showView('new-req');}
+let histData=[];
+function showComTab(t){
+  document.getElementById('com-pend-list').classList.toggle('hidden',t!=='pendientes');
+  document.getElementById('com-list-list').classList.toggle('hidden',t!=='listos');
+  document.getElementById('com-hist-list').classList.toggle('hidden',t!=='historial');
+  const base='flex-1 py-2.5 text-sm font-semibold border-r border-outline-variant ';
+  const baseL='flex-1 py-2.5 text-sm font-semibold ';
+  document.getElementById('ct-pend').className=base+(t==='pendientes'?'bg-navy-authority text-white':'text-steel-gray hover:bg-surface-container');
+  document.getElementById('ct-list').className=base+(t==='listos'?'bg-navy-authority text-white':'text-steel-gray hover:bg-surface-container');
+  document.getElementById('ct-hist').className=baseL+(t==='historial'?'bg-navy-authority text-white':'text-steel-gray hover:bg-surface-container');
+  if(t==='historial')renderHistory(histData);
+}
+function filterHistory(){
+  const q=(document.getElementById('hist-search').value||'').toLowerCase();
+  const filtered=q?histData.filter(r=>(r.destino+r.cliente+r.carga+r.origen).toLowerCase().includes(q)):histData;
+  renderHistCards(filtered);
+}
+function renderHistory(all){
+  histData=all.filter(r=>r.estado==='enviado').sort((a,b)=>b.fecha>a.fecha?1:-1);
+  renderHistCards(histData);
+}
+function renderHistCards(list){
+  const el=document.getElementById('hist-cards');
+  if(!list.length){el.innerHTML='<p class="text-sm text-steel-gray text-center py-8">No hay cotizaciones enviadas aún.</p>';return;}
+  el.innerHTML=list.map(r=>{
+    const mon=r.monedaPrecio||'S/.';
+    const margen=r.costoUnit&&r.precioUnit?((parseFloat(r.precioUnit)-parseFloat(r.costoUnit))/parseFloat(r.costoUnit)*100).toFixed(0):'—';
+    const idx = histData.indexOf(r);
+    return `<div class="bg-white border border-outline-variant rounded-xl p-4 mb-2 hover:border-navy-authority hover:shadow-sm transition">
+      <div class="flex items-start justify-between gap-3">
+        <div class="flex-1 min-w-0">
+          <div class="flex items-center gap-2 mb-1 flex-wrap">
+            <span class="font-bold text-navy-authority text-sm">REQ ${r.propNum}</span>
+            <span class="text-sm text-steel-gray">${r.fecha||''}</span>
+          </div>
+          <p class="font-semibold text-sm text-on-surface">${r.cliente} <span class="font-normal text-steel-gray">– ${r.atencion||''}</span></p>
+          <p class="text-xs text-steel-gray mt-0.5"><span class="material-symbols-outlined text-xs align-middle">route</span> ${(r.origen||'').split(',')[0]} → <strong>${(r.destino||'').split(',')[0]}</strong></p>
+          <p class="text-xs text-steel-gray">${r.carga||''} | ${r.cantidad} × ${r.unidad} | ${r.peso} TN/und</p>
+          <div class="flex gap-3 mt-1.5 text-xs">
+            <span class="text-steel-gray">Costo: <strong>${r.monedaOps||'S/.'} ${fmt(r.costoUnit)}</strong></span>
+            <span class="text-green-700">Precio: <strong>${mon} ${fmt(r.precioUnit)}</strong>/und</span>
+            <span class="text-blue-700">Margen: <strong>${margen}%</strong></span>
+          </div>
+        </div>
+        <button onclick="useAsTemplate(${idx})"
+          class="flex-shrink-0 bg-action-orange text-navy-authority text-xs font-bold px-3 py-2 rounded-xl hover:opacity-90 transition text-center leading-tight">
+          Usar<br>como base
+        </button>
+      </div>
+    </div>`;
+  }).join('');
+}
+function useAsTemplate(idx){
+  const r = histData[idx] || {};
+  showNewForm();
+  // Pre-fill route and unit data — cost shown as reference only
+  document.getElementById('n_ori').value=r.origen||'';
+  document.getElementById('n_dst').value=r.destino||'';
+  document.getElementById('n_car').value=r.carga||'';
+  document.getElementById('n_uni').value=r.unidad||'Tracto T3';
+  document.getElementById('n_sem').value=r.semirremolque||'Semirremolque S3';
+  document.getElementById('n_pes').value=r.peso||'';
+  document.getElementById('n_lar').value=r.largo||'';
+  document.getElementById('n_anc').value=r.ancho||'';
+  document.getElementById('n_alt').value=r.alto||'';
+  // Clear client-specific data
+  document.getElementById('n_cli').value='';
+  document.getElementById('n_ate').value='';
+  document.getElementById('n_can').value='1';
+  document.getElementById('n_fec').value='';
+  document.getElementById('n_per').value=r.permisos||'';
+  document.getElementById('n_prop').value=String(parseInt(r.propNum||'050')+1).padStart(3,'0');
+  // Show reference note
+  const mon=r.monedaOps||'S/.';
+  document.getElementById('n_add').value='[REFERENCIA RUTA ANTERIOR — REQ '+r.propNum+' ('+r.fecha+'): Costo: '+mon+' '+fmt(r.costoUnit)+'/und | Precio cobrado: '+(r.monedaPrecio||'S/.')+' '+fmt(r.precioUnit)+'/und | Margen: '+((parseFloat(r.precioUnit)-parseFloat(r.costoUnit))/parseFloat(r.costoUnit)*100).toFixed(0)+'%]\n\nElimina esta nota antes de guardar.';
+  tog('est',r.estiba||'NO');tog('esc',r.escolta||'NO');
+}
+
+// ── CARGA DE DATOS ──
+async function loadData(){
+  document.getElementById('sys-loading').classList.remove('hidden');
+  document.getElementById('sys-error').classList.add('hidden');
+  VIEWS.forEach(x=>{const el=document.getElementById('view-'+x);if(el)el.classList.add('hidden');});
+  if(USE_LOCAL){
+    seedDemoData();
+    const all=JSON.parse(localStorage.getItem('jhaz_reqs')||'[]');
+    document.getElementById('sys-loading').classList.add('hidden');
+    // Show demo badge
+    const lbl=document.getElementById('sys-role-label');
+    if(lbl&&!lbl.textContent.includes('DEMO'))lbl.textContent+=' · MODO DEMO';
+    renderRole(all.reverse?all.slice().reverse():all);
+    return;
+  }
+  try{
+    const res=await fetch(SCRIPT_URL+'?action=listar');
+    const json=await res.json();
+    document.getElementById('sys-loading').classList.add('hidden');
+    if(!json.ok)throw new Error(json.error);
+    renderRole(json.data||[]);
+  }catch(e){
+    document.getElementById('sys-loading').classList.add('hidden');
+    document.getElementById('sys-error').classList.remove('hidden');
+  }
+}
+
+function renderRole(all){allRequests=all;
+  if(role==='comercial'){
+    const enProceso=all.filter(r=>['pendiente_costo','pendiente_precio'].includes(r.estado));
+    const listos=all.filter(r=>r.estado==='listo');
+    histData=all.filter(r=>r.estado==='enviado').sort((a,b)=>b.fecha>a.fecha?1:-1);
+    document.getElementById('com-pend-list').innerHTML=enProceso.length
+      ?enProceso.map(r=>reqCard(r,()=>{})).join('')
+      :'<p class="text-sm text-steel-gray text-center py-8">No hay solicitudes en proceso.</p>';
+    document.getElementById('com-list-list').innerHTML=listos.length
+      ?listos.map(r=>readyCard(r)).join('')
+      :'<p class="text-sm text-steel-gray text-center py-8">No hay cotizaciones listas aún.</p>';
+    const histCount=histData.length;
+    document.getElementById('ct-hist').textContent='📂 Historial'+(histCount?' ('+histCount+')':'');
+    showView('comercial');
+  }else if(role==='operaciones'){
+    const pend=all.filter(r=>r.estado==='pendiente_costo');
+    document.getElementById('ops-list').innerHTML=pend.length
+      ?pend.map(r=>reqCard(r,()=>openOpsForm(r),'Ingresar costo')).join('')
+      :'<p class="text-sm text-steel-gray text-center py-8">No hay requerimientos pendientes de costo. ¡Todo al día!</p>';
+    showView('operaciones');
+  }else if(role==='duena'){
+    const pend=all.filter(r=>r.estado==='pendiente_precio');
+    document.getElementById('dna-list').innerHTML=pend.length
+      ?pend.map(r=>reqCard(r,()=>openDnaForm(r),'Aprobar precio','#27500A')).join('')
+      :'<p class="text-sm text-steel-gray text-center py-8">No hay precios pendientes de aprobación.</p>';
+    showView('duena');
+  }
+}
+
+function reqCard(r,onAction,btnLabel,btnColor){
+  const estadoClasses={pendiente_costo:'estado-pendiente_costo',pendiente_precio:'estado-pendiente_precio',listo:'estado-listo',enviado:'estado-enviado'};
+  const estadoLabels={pendiente_costo:'Pendiente costo',pendiente_precio:'Pendiente precio',listo:'Listo para enviar',enviado:'Enviado'};
+  const hasbtn=btnLabel?true:false;
+  return `<div class="req-card">
+    <div class="flex items-start justify-between gap-3">
+      <div class="flex-1 min-w-0">
+        <div class="flex items-center gap-2 mb-1 flex-wrap">
+          <span class="font-bold text-navy-authority text-sm">REQ ${r.propNum||'—'}</span>
+          <span class="font-semibold text-sm">${r.cliente||'—'}</span>
+          <span class="badge ${estadoClasses[r.estado]||''}">${estadoLabels[r.estado]||r.estado}</span>
+        </div>
+        <p class="text-xs text-steel-gray">${r.origen||'—'} → ${r.destino||'—'}</p>
+        <p class="text-xs text-steel-gray">${r.carga||'—'} | ${r.cantidad||'?'} × ${r.unidad||'?'} | ${r.peso||'?'} TN/und</p>
+        <p class="text-xs text-steel-gray/70 mt-1">${r.fecha||''}</p>
+      </div>
+      ${hasbtn?`<button onclick="handleCard('${r.id}','${btnLabel}')" class="flex-shrink-0 px-3 py-1.5 rounded-lg text-white text-xs font-semibold" style="background:${btnColor||'#1A365D'}">${btnLabel}</button>`:''}
+    </div>
+  </div>`;
+}
+
+// ── NUEVO REQUERIMIENTO ──
+function tog(key,val){
+  togV[key]=val;
+  const map={est:['te_s','te_n'],esc:['tesc_s','tesc_n']};
+  const [si,no]=map[key];
+  document.getElementById(si).className='tog-btn'+(val==='SI'?' si':'');
+  document.getElementById(no).className='tog-btn'+(val==='NO'?' no-act':'');
+}
+
+async function saveNewReq(){
+  const cli=gv('n_cli');if(!cli){alert('Ingresa el nombre del cliente');return;}
+  const btn=document.getElementById('save-req-btn');
+  btn.disabled=true;btn.textContent='Guardando...';
+  const data={
+    action:'crear',propNum:gv('n_prop'),comercial:gv('n_com'),cliente:cli,
+    atencion:gv('n_ate'),origen:gv('n_ori'),destino:gv('n_dst'),
+    carga:gv('n_car'),unidad:gv('n_uni'),semirremolque:gv('n_sem'),
+    cantidad:gv('n_can'),peso:gv('n_pes'),largo:gv('n_lar'),ancho:gv('n_anc'),
+    alto:gv('n_alt'),fechaCarga:gv('n_fec'),permisos:gv('n_per'),
+    estiba:togV.est,escolta:togV.esc,adicionales:gv('n_add')
+  };
+  try{
+    let json;
+  if(USE_LOCAL){
+    const id='l'+Date.now();
+    data.id=id;data.estado='pendiente_costo';data.fecha=new Date().toLocaleDateString('es-PE');
+    const all=JSON.parse(localStorage.getItem('jhaz_reqs')||'[]');
+    all.unshift(data);localStorage.setItem('jhaz_reqs',JSON.stringify(all));
+    json={ok:true,id};
+  }else{
+    const res=await fetch(SCRIPT_URL,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify(data)});
+    json=await res.json();
+    if(!json.ok)throw new Error(json.error||'Error al guardar');
+  }
+    // Generar mensaje WhatsApp para el grupo
+    const waMsg=`🔔 *NUEVO REQUERIMIENTO JHAZ*\n\n📋 *REQ ${gv('n_prop')}* — ${cli}\n👤 ${gv('n_ate')||'—'}\n📍 ${gv('n_ori')||'—'} → ${gv('n_dst')||'—'}\n🚛 ${gv('n_uni')} + ${gv('n_sem')} × ${gv('n_can')} und.\n📦 ${gv('n_car')||'—'} | ${gv('n_pes')} TN/und\n📅 ${gv('n_fec')||'—'}\n\n⏳ *Operaciones: ingresar costo del flete*\nComercial: Frank Espinoza | 933-428-035`;
+    navigator.clipboard.writeText(waMsg).catch(()=>{});
+    const msg=document.getElementById('save-req-msg');
+    msg.textContent='✓ Guardado en el sistema. Mensaje de WhatsApp copiado al portapapeles.';
+    msg.classList.remove('hidden');
+    btn.disabled=false;btn.textContent='Guardar y enviar a Operaciones';
+    setTimeout(()=>{loadData();},1500);
+  }catch(e){
+    alert('Error al guardar: '+e.message);
+    btn.disabled=false;btn.textContent='Guardar y enviar a Operaciones';
+  }
+}
+
+// ── OPERACIONES ──
+function openOpsForm(r){
+  currentReq=r;
+  document.getElementById('ops-req-detail').innerHTML=`
+    <p class="text-xs font-bold text-blue-800 uppercase tracking-widest mb-3">📋 Datos del requerimiento</p>
+    <div class="grid grid-cols-2 gap-2 text-xs">
+      <div><span class="text-blue-700">Cliente:</span> <strong>${r.cliente} (${r.atencion})</strong></div>
+      <div><span class="text-blue-700">Ruta:</span> <strong>${(r.origen||'').split(',')[0]} → ${(r.destino||'').split(',')[0]}</strong></div>
+      <div><span class="text-blue-700">Carga:</span> ${r.carga}</div>
+      <div><span class="text-blue-700">Unidad:</span> ${r.cantidad} × ${r.unidad} + ${r.semirremolque}</div>
+      <div><span class="text-blue-700">Dimensiones:</span> ${r.largo}×${r.ancho}×${r.alto} m</div>
+      <div><span class="text-blue-700">Peso:</span> ${r.peso} TN/und</div>
+      ${r.adicionales?`<div class="col-span-2"><span class="text-blue-700">Adicionales:</span> ${r.adicionales}</div>`:''}
+    </div>`;
+  document.getElementById('o_sob').value='500';document.getElementById('o_tra').value='2';document.getElementById('o_cos').value='';document.getElementById('o_not').value='';
+  document.getElementById('ops-save-msg').classList.add('hidden');
+  showView('ops-form');
+}
+
+async function saveOps(){
+  const cos=gv('o_cos');if(!cos){alert('Ingresa el costo por unidad');return;}
+  const btn=event.currentTarget;btn.disabled=true;btn.textContent='Guardando...';
+  const updates={costoUnit:cos,monedaOps:gv('o_mon'),sobreestadia:gv('o_sob'),transitoDias:gv('o_tra'),notasOps:gv('o_not'),estado:'pendiente_precio'};
+  try{
+    let json;
+    if(USE_LOCAL){
+      const all=JSON.parse(localStorage.getItem('jhaz_reqs')||'[]');
+      const idx=all.findIndex(r=>String(r.id)===String(currentReq.id));
+      if(idx>=0){Object.assign(all[idx],updates);localStorage.setItem('jhaz_reqs',JSON.stringify(all));}
+      json={ok:true};
+    }else{
+      const res=await fetch(SCRIPT_URL,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify({action:'actualizar',id:currentReq.id,updates})});
+      json=await res.json();
+      if(!json.ok)throw new Error(json.error||'Error');
+    }
+    document.getElementById('ops-save-msg').textContent='✓ Costo guardado. Pasó a aprobación de la dueña.';
+    document.getElementById('ops-save-msg').classList.remove('hidden');
+    btn.disabled=false;btn.textContent='Guardar costo y pasar a Aprobación';
+    setTimeout(()=>loadData(),1500);
+  }catch(e){alert('Error: '+e.message);btn.disabled=false;btn.textContent='Guardar costo y pasar a Aprobación';}
+}
+
+// ── DUEÑA ──
+function openDnaForm(r){
+  currentReq=r;
+  document.getElementById('dna-req-detail').innerHTML=`
+    <p class="text-xs font-bold text-blue-800 uppercase tracking-widest mb-3">📋 Requerimiento</p>
+    <div class="grid grid-cols-2 gap-2 text-xs">
+      <div><span class="text-blue-700">Cliente:</span> <strong>${r.cliente}</strong></div>
+      <div><span class="text-blue-700">Ruta:</span> <strong>${(r.origen||'').split(',')[0]} → ${(r.destino||'').split(',')[0]}</strong></div>
+      <div><span class="text-blue-700">Carga:</span> ${r.carga} | ${r.cantidad} und.</div>
+      <div><span class="text-blue-700">Fecha:</span> ${r.fechaCarga||'—'}</div>
+    </div>`;
+  document.getElementById('dna-ops-detail').innerHTML=`
+    <p class="text-xs font-bold text-green-800 uppercase tracking-widest mb-3">⚙️ Datos de Operaciones</p>
+    <div class="grid grid-cols-3 gap-2 text-xs">
+      <div><span class="text-green-700">Costo/und:</span> <strong>${r.monedaOps||'S/.'} ${fmt(r.costoUnit)}</strong></div>
+      <div><span class="text-green-700">Sobreestadía:</span> S/. ${fmt(r.sobreestadia)}/día</div>
+      <div><span class="text-green-700">Tránsito:</span> ${r.transitoDias} día(s)</div>
+      ${r.notasOps?`<div class="col-span-3"><span class="text-green-700">Notas:</span> ${r.notasOps}</div>`:''}
+    </div>`;
+  document.getElementById('w_pre').value='';document.getElementById('w_not').value='';
+  document.getElementById('mgn-box').textContent='—';document.getElementById('mgn-box').style.cssText='background:#f0f4f8;color:#4A5568;cursor:default';
+  document.getElementById('totals-box').classList.add('hidden');
+  document.getElementById('dna-save-msg').classList.add('hidden');
+  showView('dna-form');
+}
+
+function calcMgn(){
+  const cos=parseFloat(currentReq?.costoUnit||0),pre=parseFloat(gv('w_pre')||0),can=parseInt(currentReq?.cantidad||1),mon=gv('w_mon')||'S/.';
+  const btn=document.querySelector('#view-dna-form button[onclick="saveDna()"]');if(btn){btn.disabled=!gv('w_pre');btn.style.opacity=gv('w_pre')?1:.5;}
+  const mb=document.getElementById('mgn-box');
+  if(cos>0&&pre>0){
+    const m=((pre-cos)/cos*100).toFixed(1);
+    mb.textContent=m+'%';mb.style.cssText=`background:${m>20?'#D1FAE5':m>10?'#FEF3C7':'#FEE2E2'};color:${m>20?'#065F46':m>10?'#92400E':'#991B1B'};cursor:default`;
+    const totP=pre*can,util=totP-cos*can;
+    document.getElementById('totals-box').classList.remove('hidden');
+    document.getElementById('tot-lbl').textContent=`Total (${can} und.)`;
+    document.getElementById('tot-val').textContent=`${mon} ${fmt(totP)}`;
+    document.getElementById('util-val').textContent=`${mon} ${fmt(util)}`;
+    document.getElementById('util-box').style.background=util>0?'#D1FAE5':'#FEE2E2';
+    document.getElementById('util-val').style.color=util>0?'#065F46':'#991B1B';
+  }else{mb.textContent='—';mb.style.cssText='background:#f0f4f8;color:#4A5568;cursor:default';}
+}
+
+async function saveDna(){
+  const pre=gv('w_pre');if(!pre){alert('Ingresa el precio por unidad');return;}
+  const btn=event.currentTarget;btn.disabled=true;btn.textContent='Guardando...';
+  const updates={precioUnit:pre,monedaPrecio:gv('w_mon'),credito:gv('w_cre'),validez:gv('w_val'),notasDuena:gv('w_not'),estado:'listo'};
+  try{
+    let json;
+    if(USE_LOCAL){
+      const all=JSON.parse(localStorage.getItem('jhaz_reqs')||'[]');
+      const idx=all.findIndex(r=>String(r.id)===String(currentReq.id));
+      if(idx>=0){Object.assign(all[idx],updates);localStorage.setItem('jhaz_reqs',JSON.stringify(all));}
+      json={ok:true};
+    }else{
+      const res=await fetch(SCRIPT_URL,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify({action:'actualizar',id:currentReq.id,updates})});
+      json=await res.json();
+      if(!json.ok)throw new Error(json.error||'Error');
+    }
+    document.getElementById('dna-save-msg').textContent='✓ Precio aprobado. La cotización está lista para Frank.';
+    document.getElementById('dna-save-msg').classList.remove('hidden');
+    btn.disabled=false;btn.textContent='Aprobar precio y generar cotización';
+    // Merge para mostrar cotización inmediatamente
+    currentReq={...currentReq,...updates};
+    setTimeout(()=>openQuote(currentReq),800);
+  }catch(e){alert('Error: '+e.message);btn.disabled=false;btn.textContent='Aprobar precio y generar cotización';}
+}
+
+// ── COTIZACIÓN ──
+function openQuote(r){
+  currentReq=r;
+  const mon=r.monedaPrecio||r.monedaOps||'S/.';
+  const pre=parseFloat(r.precioUnit)||0,can=parseInt(r.cantidad)||1,tot=pre*can;
+  const extraTerms=[r.estiba==='SI'?'Incluye servicio de estiba y desestiba.':'',r.escolta==='SI'?'Incluye servicio de escolta.':''].filter(Boolean);
+  document.getElementById('quote-doc').innerHTML=`
+<div style="display:flex;justify-content:space-between;align-items:flex-start;border-bottom:2px solid #1A365D;padding-bottom:14px;margin-bottom:18px">
+  <div><div style="background:#1A365D;color:#F6AD55;font-weight:700;font-size:17px;padding:7px 16px;border-radius:8px;display:inline-block;letter-spacing:.04em;margin-bottom:5px">JHAZ</div>
+    <div style="font-size:11px;color:#4A5568">Operador Logístico S.A.C.</div><div style="font-size:10px;color:#9aa5b4">Confianza que llega a destino</div></div>
+  <div style="text-align:right"><div style="font-size:16px;font-weight:700;color:#1A365D">PROPUESTA N° JHAZ 2026-${r.propNum||'—'}</div>
+    <div style="font-size:12px;color:#4A5568;margin-top:5px">Lima, ${todayStr()}</div></div>
+</div>
+<div style="margin-bottom:16px;font-size:12px;line-height:1.9">
+  <div><strong>CLIENTE:</strong> <span style="font-size:13px;color:#1A365D;font-weight:600">${r.cliente||'—'}</span></div>
+  <div>Atención: ${r.atencion||'—'}</div>
+  <div>Ruta: <strong>${r.origen||'—'} → ${r.destino||'—'}</strong></div>
+  ${r.fechaCarga?`<div>Fecha estimada: ${r.fechaCarga}</div>`:''}
+</div>
+<table style="width:100%;border-collapse:collapse;font-size:11.5px;margin-bottom:4px">
+<thead><tr>
+  <th style="background:#1A365D;color:#fff;padding:8px 10px;text-align:left;border:1px solid #1A365D">UNIDAD</th>
+  <th style="background:#1A365D;color:#fff;padding:8px 10px;text-align:left;border:1px solid #1A365D" colspan="2">TIPO DE CARGA</th>
+  <th style="background:#1A365D;color:#fff;padding:8px 10px;text-align:right;border:1px solid #1A365D">TARIFA / UNIDAD</th>
+</tr></thead>
+<tbody>
+  <tr><td style="padding:9px 10px;border:1px solid #d1d9e0;vertical-align:top"><strong>${r.unidad||'—'}</strong><div style="font-size:10px;color:#4A5568">${r.semirremolque||''}</div></td>
+    <td style="padding:9px 10px;border:1px solid #d1d9e0;vertical-align:top" colspan="2">
+      <strong>${r.carga||'—'}</strong>
+      <div style="font-size:10px;color:#4A5568">${can} unidades${r.largo?' — '+r.largo+'m × '+r.ancho+'m × '+r.alto+'m':''}${r.peso?' — '+r.peso+' TN/und':''}</div>
+      ${r.adicionales?`<div style="font-size:10px;color:#4A5568;margin-top:2px">${r.adicionales}</div>`:''}
+    </td>
+    <td style="padding:9px 10px;border:1px solid #d1d9e0;text-align:right;font-weight:700;font-size:13px;color:#1A365D">${mon} ${fmt(pre)}</td></tr>
+  <tr><td style="padding:6px 10px;border:1px solid #d1d9e0;font-size:10px;color:#4A5568"></td><td style="padding:6px 10px;border:1px solid #d1d9e0;font-weight:600;font-size:11px">TIEMPO DE TRÁNSITO</td><td style="padding:6px 10px;border:1px solid #d1d9e0"></td><td style="padding:6px 10px;border:1px solid #d1d9e0;font-size:10px;text-align:right;color:#4A5568">TARIFA/DÍA/UNID.</td></tr>
+  <tr><td style="padding:6px 10px;border:1px solid #d1d9e0;background:#f8f9fa"></td><td style="padding:6px 10px;border:1px solid #d1d9e0;background:#f8f9fa">${r.transitoDias||'—'} día(s)</td><td style="padding:6px 10px;border:1px solid #d1d9e0;background:#f8f9fa"></td><td style="padding:6px 10px;border:1px solid #d1d9e0;background:#f8f9fa"></td></tr>
+  <tr><td style="padding:6px 10px;border:1px solid #d1d9e0;font-size:10px;color:#4A5568"></td><td style="padding:6px 10px;border:1px solid #d1d9e0;font-weight:600;font-size:11px">SOBREESTADÍA</td><td style="padding:6px 10px;border:1px solid #d1d9e0"></td><td style="padding:6px 10px;border:1px solid #d1d9e0;font-size:10px;text-align:right;color:#4A5568">TARIFA/DÍA/UNID.</td></tr>
+  <tr><td style="padding:6px 10px;border:1px solid #d1d9e0;font-size:11px">${r.unidad||''}</td><td style="padding:6px 10px;border:1px solid #d1d9e0" colspan="2"></td><td style="padding:6px 10px;border:1px solid #d1d9e0;text-align:right;font-weight:600">S/. ${fmt(r.sobreestadia)}</td></tr>
+  <tr><td style="padding:6px 10px;border:1px solid #d1d9e0;font-weight:600;background:#f8f9fa">CRÉDITO</td><td style="padding:6px 10px;border:1px solid #d1d9e0;font-weight:600;background:#f8f9fa" colspan="2">OFERTA VÁLIDA</td><td style="background:#f8f9fa;border:1px solid #d1d9e0"></td></tr>
+  <tr><td style="padding:6px 10px;border:1px solid #d1d9e0">${r.credito||'30 días'}</td><td style="padding:6px 10px;border:1px solid #d1d9e0" colspan="2">${r.validez||'07 días'}</td><td style="border:1px solid #d1d9e0"></td></tr>
+  ${can>1?`<tr style="background:#D1FAE5"><td style="padding:8px 10px;border:1px solid #d1d9e0;font-weight:700;color:#065F46" colspan="2">TOTAL (${can} unidades)</td><td style="padding:8px 10px;border:1px solid #d1d9e0;background:#D1FAE5"></td><td style="padding:8px 10px;border:1px solid #d1d9e0;text-align:right;font-weight:700;font-size:14px;color:#065F46">${mon} ${fmt(tot)}</td></tr>`:''}
+</tbody></table>
+${r.notasDuena?`<div style="margin-top:10px;font-size:11px;padding:8px 12px;background:#FAEEDA;border-radius:8px;border:1px solid #FAC775"><strong>Nota:</strong> ${r.notasDuena}</div>`:''}
+<div style="margin-top:16px"><div style="font-size:11px;font-weight:600;margin-bottom:6px">Términos y condiciones del servicio:</div>
+<ul style="margin:0;padding-left:18px">${[...TERMS,...extraTerms].map(t=>`<li style="font-size:11px;color:#444;margin-bottom:3px">${t}</li>`).join('')}</ul></div>
+<div style="margin-top:16px;font-size:12px;color:#444">Sin otro particular.</div>
+<div style="font-size:12px;color:#444;margin-top:3px">Quedamos a su entera disposición.</div>
+<div style="margin-top:28px;border-top:1px solid #d1d9e0;padding-top:14px;display:flex;justify-content:space-between;align-items:flex-end">
+  <div style="text-align:center"><div style="border-top:1px solid #444;padding-top:5px;width:180px;font-size:12px">Frank Espinoza</div>
+    <div style="font-size:10px;color:#4A5568;margin-top:2px">JHAZ Operador Logístico S.A.C.</div>
+    <div style="font-size:10px;color:#4A5568">Área Comercial</div>
+    <div style="font-size:10px;color:#1A365D;margin-top:3px">comercial1@jhaz.com.pe · 933-428-035</div></div>
+  <div style="text-align:right;font-size:10px;color:#4A5568">
+    <div style="font-weight:600;color:#1A365D;margin-bottom:2px">JHAZ Operador Logístico S.A.C.</div>
+    <div>comercial1@jhaz.com.pe</div><div>Teléfono: 933-428-035</div><div>San Miguel, Lima</div>
+  </div>
+</div>`;
+  document.getElementById('mark-sent-btn').onclick=()=>markSent();
+  showView('quote');
+}
+
+function printQ(){
+  const r=currentReq||{};
+  const cli=(r.cliente||'cliente').replace(/[^a-zA-Z0-9áéíóúÁÉÍÓÚñÑ ]/g,'').replace(/\s+/g,'-');
+  const dst=((r.destino||'destino').split(',')[0]).trim().replace(/[^a-zA-Z0-9áéíóúÁÉÍÓÚñÑ ]/g,'').replace(/\s+/g,'-');
+  const pdfName=`JHAZ_COT-${r.propNum||'XXX'}_${cli}_${dst}`;
+  const w=window.open('','_blank');
+  w.document.write(`<!DOCTYPE html><html><head><title>${pdfName}</title><meta charset="utf-8"><style>body{font-family:Arial,sans-serif;margin:28px 36px;font-size:11pt;color:#222}table{width:100%;border-collapse:collapse}th,td{border:1px solid #c0c8d4;padding:7px 10px}th{background:#1A365D;color:#fff}@page{margin:20mm}</style></head><body>${document.getElementById('quote-doc').innerHTML}</body></html>`);
+  w.document.close();setTimeout(()=>w.print(),400);
+}
+
+function copyQ(){
+  const r=currentReq||{},mon=r.monedaPrecio||'S/.',pre=parseFloat(r.precioUnit)||0,can=parseInt(r.cantidad)||1;
+  const txt=`PROPUESTA N° JHAZ 2026-${r.propNum}\nLima, ${todayStr()}\n\nCLIENTE: ${r.cliente}\nAtención: ${r.atencion}\nRuta: ${r.origen} → ${r.destino}\n\nUNIDAD: ${r.unidad} + ${r.semirremolque}\nCARGA: ${r.carga} | ${can} und. | ${r.peso} TN/und\nFECHA: ${r.fechaCarga||'—'}\n\nTARIFA/UNIDAD: ${mon} ${fmt(pre)}${can>1?'\nTOTAL ('+can+' und.): '+mon+' '+fmt(pre*can):''}\nTRANSÍTO: ${r.transitoDias} día(s)\nSOBREESTADÍA: S/. ${fmt(r.sobreestadia)}/día\nCRÉDITO: ${r.credito} | VÁLIDO: ${r.validez}\n${r.notasDuena?'\nNota: '+r.notasDuena:''}
+\nTarifa no incluye IGV.\n\n---\nFrank Espinoza | JHAZ Operador Logístico S.A.C.\ncomercial1@jhaz.com.pe | 933-428-035`;
+  navigator.clipboard.writeText(txt).then(()=>{const l=document.getElementById('cq-lbl');l.textContent='✓ Copiado';setTimeout(()=>l.textContent='Copiar texto',2500);});
+}
+
+async function markSent(){
+  if(!currentReq||!confirm('¿Marcar esta cotización como enviada al cliente?'))return;
+  try{
+    if(USE_LOCAL){
+    const allS=JSON.parse(localStorage.getItem('jhaz_reqs')||'[]');
+    const idxS=allS.findIndex(r=>String(r.id)===String(currentReq.id));
+    if(idxS>=0){allS[idxS].estado='enviado';localStorage.setItem('jhaz_reqs',JSON.stringify(allS));}
+  }else{
+    await fetch(SCRIPT_URL,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify({action:'actualizar',id:currentReq.id,updates:{estado:'enviado'}})});
+  }
+    alert('Marcada como enviada.');loadData();
+  }catch(e){alert('Error: '+e.message);}
+}
+
+// ── COMPARTIR ──
+function showShare(){
+  const url=window.location.href.split('?')[0];
+  const inp=document.getElementById('share-url');
+  const modal=document.getElementById('share-modal');
+  const qr=document.getElementById('qr-img');
+  if(inp)inp.value=url;
+  if(qr){
+    const encoded=encodeURIComponent(url);
+    qr.src='https://api.qrserver.com/v1/create-qr-code/?size=160x160&data='+encoded+'&color=1A365D&bgcolor=ffffff';
+    qr.onerror=()=>{qr.src='https://chart.googleapis.com/chart?cht=qr&chs=160x160&chl='+encoded;};
+  }
+  if(modal){modal.style.display='flex';modal.classList.remove('hidden');}
+  else{alert('Comparte este link: '+url);}
+}
+function copyShareUrl(){
+  const url=document.getElementById('share-url')?.value||window.location.href;
+  navigator.clipboard.writeText(url).then(()=>{
+    const btn=document.getElementById('copy-share-btn');
+    if(btn){btn.textContent='✓ Copiado';setTimeout(()=>btn.textContent='Copiar',2000);}
+  }).catch(()=>{
+    // Fallback for older browsers
+    const ta=document.createElement('textarea');
+    ta.value=url;document.body.appendChild(ta);ta.select();
+    document.execCommand('copy');document.body.removeChild(ta);
+    const btn=document.getElementById('copy-share-btn');
+    if(btn){btn.textContent='✓ Copiado';setTimeout(()=>btn.textContent='Copiar',2000);}
+  });
+}
+
+// ── FORMULARIO PÚBLICO ──
+async function submitPub(e){
+  e.preventDefault();
+  const btn=document.getElementById('pub-btn');btn.disabled=true;btn.innerHTML='<span class="material-symbols-outlined text-lg spin">autorenew</span> Enviando...';
+  const body=new FormData();
+  [['Nombre',gv('p_nom')],['Empresa',gv('p_emp')],['Teléfono',gv('p_tel')],['Email',gv('p_email')],['Servicio',gv('p_srv')],['Origen',gv('p_ori')],['Destino',gv('p_dst')],['Carga',gv('p_car')],['Peso (TN)',gv('p_pes')],['Cantidad',gv('p_can')],['Fecha',gv('p_fec')],['Valor USD',gv('p_val')],['Notas',gv('p_not')]].forEach(([k,v])=>body.append(k,v));
+  try{await fetch(`https://formspree.io/f/${FORMSPREE}`,{method:'POST',body,headers:{Accept:'application/json'}});}catch(err){}
+  document.getElementById('pub-form').classList.add('hidden');
+  document.getElementById('pub-success').classList.remove('hidden');
+  btn.disabled=false;
+}
+function resetPubForm(){document.getElementById('pub-form').classList.remove('hidden');document.getElementById('pub-success').classList.add('hidden');document.getElementById('pub-form').reset();}
+</script>
+</body>
+</html>

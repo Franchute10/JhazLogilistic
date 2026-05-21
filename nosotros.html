@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="es-PE">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jhaz Operador Logístico SAC | 10 Años en Transporte de Carga | Lima, Perú</title>
+<meta name="description" content="Jhaz Operador Logístico SAC: más de 10 años moviendo carga en Perú. Proveedor de Acciona, DP World, Mina Quellaveco y Refinería Talara. Con sede en Lima, cobertura nacional e internacional.">
+<meta name="keywords" content="Jhaz Operador Logístico, historia logística Lima, operador logístico Quellaveco, transportista Acciona Peru, logística minería Perú, operador logístico SAC Lima">
+<link rel="canonical" href="https://jhaz.com.pe/nosotros.html">
+<meta property="og:title" content="Jhaz Operador Logístico | 10 Años Moviendo el Perú">
+<meta property="og:description" content="Proveedor de Acciona, DP World y Mina Quellaveco. Más de 10 años en logística peruana.">
+<meta property="og:url" content="https://jhaz.com.pe/nosotros.html">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/shared.css">
+<style>
+.page-hero { background:var(--navy-dark); position:relative; overflow:hidden; min-height:400px; display:flex; align-items:center; }
+.page-hero-bg { position:absolute; inset:0; }
+.page-hero-bg img { width:100%; height:100%; object-fit:cover; opacity:.22; }
+.page-hero-bg::after { content:''; position:absolute; inset:0; background:linear-gradient(to right,var(--navy-dark) 50%,rgba(15,34,64,.5)); }
+.page-hero-content { position:relative; z-index:1; max-width:1280px; margin:0 auto; padding:72px 32px; }
+.page-hero h1 { font-size:clamp(32px,4.5vw,52px); font-weight:800; color:#fff; letter-spacing:-.02em; line-height:1.08; margin-bottom:16px; }
+.page-hero p { font-size:16px; color:rgba(255,255,255,.65); max-width:560px; line-height:1.7; }
+
+/* MV cards */
+.mv-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:40px; }
+.mv-card { border-radius:14px; padding:32px; border-top:3px solid transparent; }
+.mv-card.mision { border-color:var(--navy); background:#fff; }
+.mv-card.vision { border-color:var(--orange); background:#fff; }
+.mv-card.valores { border-color:var(--success); background:#fff; }
+.mv-icon { width:48px; height:48px; border-radius:10px; display:flex; align-items:center; justify-content:center; margin-bottom:16px; }
+.mv-card.mision .mv-icon { background:rgba(26,54,93,.08); color:var(--navy); }
+.mv-card.vision .mv-icon { background:rgba(246,173,85,.12); color:var(--orange-dark); }
+.mv-card.valores .mv-icon { background:rgba(56,161,105,.1); color:var(--success); }
+.mv-title { font-size:18px; font-weight:700; color:var(--navy); margin-bottom:10px; }
+.mv-text { font-size:13px; color:var(--t600); line-height:1.7; }
+.val-list { list-style:none; margin-top:12px; }
+.val-list li { display:flex; align-items:center; gap:8px; font-size:13px; color:var(--t600); margin-bottom:7px; }
+.val-dot { width:6px; height:6px; background:var(--orange); border-radius:999px; flex-shrink:0; }
+
+/* Timeline */
+.timeline { position:relative; padding:0; }
+.timeline::before { content:''; position:absolute; left:50%; top:0; bottom:0; width:2px; background:var(--border); transform:translateX(-50%); }
+.tl-item { display:grid; grid-template-columns:1fr 60px 1fr; gap:0; margin-bottom:48px; align-items:start; }
+.tl-item:nth-child(odd) .tl-left { text-align:right; padding-right:32px; }
+.tl-item:nth-child(odd) .tl-right { padding-left:32px; }
+.tl-item:nth-child(even) .tl-left { order:3; padding-left:32px; }
+.tl-item:nth-child(even) .tl-center { order:2; }
+.tl-item:nth-child(even) .tl-right { order:1; padding-right:32px; text-align:right; }
+.tl-center { display:flex; flex-direction:column; align-items:center; gap:8px; }
+.tl-year { background:var(--orange); color:var(--navy-dark); font-size:13px; font-weight:800; width:52px; height:52px; border-radius:999px; display:flex; align-items:center; justify-content:center; flex-shrink:0; z-index:1; }
+.tl-title { font-size:17px; font-weight:700; color:var(--navy); margin-bottom:6px; }
+.tl-desc { font-size:13px; color:var(--t600); line-height:1.65; }
+
+/* Stats strip */
+.stats-strip { background:var(--navy); padding:56px 0; }
+.stats-grid { display:grid; grid-template-columns:repeat(4,1fr); }
+.stat-item { padding:0 32px; border-right:1px solid rgba(255,255,255,.12); text-align:center; }
+.stat-item:last-child { border-right:none; }
+.stat-num { font-size:clamp(36px,4vw,52px); font-weight:800; color:#fff; letter-spacing:-.03em; line-height:1; margin-bottom:8px; }
+.stat-num sup { font-size:.4em; color:var(--orange); }
+.stat-label { font-size:12px; color:rgba(255,255,255,.5); line-height:1.4; }
+
+/* Projects grid */
+.proj-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+.proj-card { border-radius:12px; overflow:hidden; position:relative; aspect-ratio:4/3; display:block; }
+.proj-card img { width:100%; height:100%; object-fit:cover; transition:transform .4s; }
+.proj-card:hover img { transform:scale(1.05); }
+.proj-overlay { position:absolute; inset:0; background:linear-gradient(to top,rgba(15,34,64,.88) 0%,rgba(15,34,64,.1) 65%); }
+.proj-info { position:absolute; bottom:0; left:0; right:0; padding:16px; }
+.proj-tag { font-size:9px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:var(--orange); margin-bottom:4px; }
+.proj-name { font-size:15px; font-weight:700; color:#fff; }
+
+@media(max-width:900px){ .mv-grid{grid-template-columns:1fr} .timeline::before{left:24px} .tl-item{grid-template-columns:48px 1fr!important} .tl-item:nth-child(even) .tl-left{order:3!important} .tl-item .tl-left,.tl-item:nth-child(even) .tl-right{text-align:left!important;padding-right:0!important;padding-left:16px!important} .tl-item .tl-right,.tl-item:nth-child(even) .tl-right{display:none} .stats-grid{grid-template-columns:1fr 1fr} .stat-item{padding:16px;border-right:none;border-bottom:1px solid rgba(255,255,255,.1)} .proj-grid{grid-template-columns:1fr 1fr} }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <div class="nav-logo-box"><span>JH</span></div>
+      <div class="nav-brand">Jhaz<small>Operador Logístico SAC</small></div>
+    </a>
+    <nav class="nav-links">
+      <a href="index.html" class="nav-link">Inicio</a>
+      <a href="servicios.html" class="nav-link">Servicios</a>
+      <a href="nosotros.html" class="nav-link active">Nosotros</a>
+      <a href="contacto.html" class="nav-link">Contacto</a>
+    </nav>
+    <a href="contacto.html" class="nav-cta">Solicitar Cotización</a>
+  </div>
+</header>
+
+<main>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="page-hero-bg">
+    <img src="assets/images/carga06.png" alt="Equipo Jhaz - Confianza que llega a destino">
+  </div>
+  <div class="page-hero-content">
+    <div class="section-tag" style="margin-bottom:16px">Nuestra historia</div>
+    <h1>Nuestra Historia<br>y Compromiso</h1>
+    <p>En Jhaz Operador Logístico, transformamos la complejidad de la cadena de suministro en soluciones ágiles y seguras. Con más de una década liderando el sector, nuestra misión es impulsar el crecimiento de nuestros clientes a través de una gestión de carga impecable.</p>
+  </div>
+</section>
+
+<!-- MISIÓN / VISIÓN / VALORES -->
+<section class="section">
+  <div class="container">
+    <div class="section-tag">Identidad corporativa</div>
+    <h2 class="section-title">Lo que nos define</h2>
+    <div class="mv-grid">
+      <div class="mv-card mision rev">
+        <div class="mv-icon"><svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7"><path stroke-linecap="round" stroke-linejoin="round" d="M15.59 14.37a6 6 0 01-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 006.16-12.12A14.98 14.98 0 009.631 8.41m5.96 5.96a14.926 14.926 0 01-5.841 2.58m-.119-8.54a6 6 0 00-7.381 5.84h4.8m2.581-5.84a14.927 14.927 0 00-2.58 5.84m2.699 2.7c-.103.021-.207.041-.311.06a15.09 15.09 0 01-2.448-2.448 14.9 14.9 0 01.06-.312m-2.24 2.39a4.493 4.493 0 00-1.757 4.306 4.493 4.493 0 004.306-1.758M16.5 9a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z"/></svg></div>
+        <div class="mv-title">Misión</div>
+        <div class="mv-text">Proporcionar servicios de transporte de mercancías y logística de alta calidad, seguros y confiables, cubriendo las necesidades de nuestros clientes y brindando un trato personalizado en cada servicio ejecutado.</div>
+      </div>
+      <div class="mv-card vision rev">
+        <div class="mv-icon"><svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7"><path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg></div>
+        <div class="mv-title">Visión</div>
+        <div class="mv-text">Ser la empresa líder del sector de transporte y logística gracias al compromiso en la atención de los servicios y ajustados a las necesidades de los clientes para poder transportar cualquier tipo de mercancía, creando un vínculo a largo plazo con ellos.</div>
+      </div>
+      <div class="mv-card valores rev">
+        <div class="mv-icon"><svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7"><path stroke-linecap="round" stroke-linejoin="round" d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z"/></svg></div>
+        <div class="mv-title">Valores</div>
+        <ul class="val-list">
+          <li><span class="val-dot"></span>Compromiso y puntualidad</li>
+          <li><span class="val-dot"></span>Calidad en cada operación</li>
+          <li><span class="val-dot"></span>Integridad y transparencia</li>
+          <li><span class="val-dot"></span>Respeto y trabajo en equipo</li>
+          <li><span class="val-dot"></span>Seguridad operacional</li>
+          <li><span class="val-dot"></span>Innovación y mejora continua</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS STRIP -->
+<div class="stats-strip">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-item"><div class="stat-num">10<sup>+</sup></div><div class="stat-label">Años operando<br>en el mercado peruano</div></div>
+      <div class="stat-item"><div class="stat-num">12<sup>+</sup></div><div class="stat-label">Empresas líderes<br>en cartera activa</div></div>
+      <div class="stat-item"><div class="stat-num">24<sup>/7</sup></div><div class="stat-label">Disponibilidad de flota<br>GPS y monitoreo</div></div>
+      <div class="stat-item"><div class="stat-num">100<sup>%</sup></div><div class="stat-label">Factura electrónica<br>y formalidad SUNAT</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- TIMELINE -->
+<section class="section" style="background:var(--surface-100)">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:52px">
+      <div class="section-tag" style="justify-content:center">Nuestra evolución</div>
+      <h2 class="section-title" style="text-align:center">Más de 10 Años de Excelencia</h2>
+      <p style="color:var(--t400);font-size:14px;margin-top:8px;max-width:560px;margin-left:auto;margin-right:auto">Nuestra historia ha estado marcada por el crecimiento constante y la adaptación a un mercado logístico cada vez más exigente.</p>
+    </div>
+    <div class="timeline" style="max-width:900px;margin:0 auto">
+      <div class="tl-item rev">
+        <div class="tl-left">
+          <div class="tl-title">Fundación</div>
+          <div class="tl-desc">Iniciamos operaciones en Lima con transporte de carga local. Primeros clientes en el sector construcción e importación.</div>
+        </div>
+        <div class="tl-center"><div class="tl-year">2015</div></div>
+        <div class="tl-right"></div>
+      </div>
+      <div class="tl-item rev">
+        <div class="tl-left"></div>
+        <div class="tl-center"><div class="tl-year">2018</div></div>
+        <div class="tl-right">
+          <div class="tl-title">Expansión Nacional</div>
+          <div class="tl-desc">Ampliamos rutas a Arequipa, Trujillo, Cusco y Piura. Incorporamos unidades plataforma y cama baja para carga pesada.</div>
+        </div>
+      </div>
+      <div class="tl-item rev">
+        <div class="tl-left">
+          <div class="tl-title">Proyectos Mineros y Energéticos</div>
+          <div class="tl-desc">Ingreso a Mina Quellaveco (Anglo American), Mina Antapaccay, Refinería Talara y Proyecto Punta Lomitas (Acciona). Habilitación MATPEL.</div>
+        </div>
+        <div class="tl-center"><div class="tl-year">2021</div></div>
+        <div class="tl-right"></div>
+      </div>
+      <div class="tl-item rev">
+        <div class="tl-left"></div>
+        <div class="tl-center"><div class="tl-year">2024</div></div>
+        <div class="tl-right">
+          <div class="tl-title">Liderazgo y Expansión Internacional</div>
+          <div class="tl-desc">Cementera Potosí Bolivia, cartera de 12+ empresas globales como Acciona y DP World. Portal cliente y tracking en tiempo real.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="section" id="proyectos">
+  <div class="container">
+    <div class="section-tag">Principales proyectos</div>
+    <h2 class="section-title">Donde hemos<br>marcado la diferencia.</h2>
+    <p class="section-sub" style="margin-bottom:36px">Cada proyecto es una prueba de nuestra capacidad para operar en condiciones exigentes con los más altos estándares.</p>
+    <div class="proj-grid">
+      <div class="proj-card rev"><img src="https://jhaz.com.pe/proyectos/mina_quellaveco.webp" alt="Quellaveco"><div class="proj-overlay"></div><div class="proj-info"><div class="proj-tag">Nacional · Anglo American</div><div class="proj-name">Mina Quellaveco</div></div></div>
+      <div class="proj-card rev"><img src="https://jhaz.com.pe/proyectos/mina_antapaccay.webp" alt="Antapaccay"><div class="proj-overlay"></div><div class="proj-info"><div class="proj-tag">Nacional · Cobre · Cusco</div><div class="proj-name">Mina Antapaccay</div></div></div>
+      <div class="proj-card rev"><img src="https://jhaz.com.pe/proyectos/refineria_talara.webp" alt="Talara"><div class="proj-overlay"></div><div class="proj-info"><div class="proj-tag">Nacional · Petroquímica</div><div class="proj-name">Refinería Talara</div></div></div>
+      <div class="proj-card rev"><img src="https://jhaz.com.pe/proyectos/proyecto_punta_lomitas.webp" alt="Punta Lomitas"><div class="proj-overlay"></div><div class="proj-info"><div class="proj-tag">Nacional · Acciona · Energía</div><div class="proj-name">Proyecto Punta Lomitas</div></div></div>
+      <div class="proj-card rev"><img src="https://jhaz.com.pe/proyectos/cementera_potosi.webp" alt="Potosí"><div class="proj-overlay"></div><div class="proj-info"><div class="proj-tag">Internacional · Bolivia</div><div class="proj-name">Cementera Potosí</div></div></div>
+      <div class="proj-card rev"><img src="https://jhaz.com.pe/proyectos/Importación_de_contenedores.webp" alt="Contenedores"><div class="proj-overlay"></div><div class="proj-info"><div class="proj-tag">Callao · Portuario</div><div class="proj-name">Importación de Contenedores</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- NUESTRO EQUIPO — con carga10.png -->
+<section class="section" style="background:#fff">
+  <div class="container">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center">
+      <div>
+        <div class="section-tag rev">Nuestro equipo</div>
+        <h2 class="section-title rev" style="color:var(--navy);margin-bottom:16px">Personas reales<br>detrás de cada envío.</h2>
+        <p class="rev" style="font-size:16px;color:var(--t600);line-height:1.7;margin-bottom:24px">Jhaz no es solo flota y permisos — es un equipo comprometido que coordina cada operación con atención personalizada. Desde el área comercial hasta los conductores certificados, todos compartimos el mismo estándar: <strong style="color:var(--navy)">Confianza que llega a destino</strong>.</p>
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <div style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:var(--surface);border-radius:10px;border:1.5px solid var(--border)">
+            <div style="width:10px;height:10px;background:var(--success);border-radius:999px;flex-shrink:0"></div>
+            <div style="font-size:13px;color:var(--navy);font-weight:500">Conductores con certificación MATPEL y habilitación para minas</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:var(--surface);border-radius:10px;border:1.5px solid var(--border)">
+            <div style="width:10px;height:10px;background:var(--success);border-radius:999px;flex-shrink:0"></div>
+            <div style="font-size:13px;color:var(--navy);font-weight:500">Área comercial disponible Lun–Vie 8am–8pm · Sáb 9am–2pm</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:var(--surface);border-radius:10px;border:1.5px solid var(--border)">
+            <div style="width:10px;height:10px;background:var(--success);border-radius:999px;flex-shrink:0"></div>
+            <div style="font-size:13px;color:var(--navy);font-weight:500">Monitoreo GPS 24/7 con coordinación en tiempo real</div>
+          </div>
+        </div>
+      </div>
+      <div class="rev">
+        <div style="border-radius:16px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.15);position:relative">
+          <img src="assets/images/carga06.png" alt="Equipo Jhaz Operador Logístico frente a la flota de camiones" style="width:100%;display:block;object-fit:cover">
+          <div style="position:absolute;bottom:0;left:0;right:0;padding:20px 24px;background:linear-gradient(to top,rgba(15,34,64,.9),transparent)">
+            <div style="font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(246,173,85,.9);margin-bottom:4px">Flota propia · Lima, Perú</div>
+            <div style="font-size:15px;font-weight:700;color:#fff">Jhaz Operador Logístico S.A.C.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section style="background:var(--navy);padding:64px 0">
+  <div class="container" style="text-align:center">
+    <h2 style="font-size:clamp(24px,3vw,36px);font-weight:800;color:#fff;margin-bottom:12px">¿Quieres ser parte de nuestra red logística?</h2>
+    <p style="color:rgba(255,255,255,.6);font-size:15px;margin-bottom:28px">Conversa con nuestro equipo y descubre cómo Jhaz puede potenciar tu operación.</p>
+    <a href="contacto.html" class="btn btn-orange" style="font-size:15px;padding:14px 32px">Solicitar Cotización →</a>
+  </div>
+</section>
+</main>
+
+<!-- SEO content block -->
+<section style="background:#EDF2F7;padding:32px 0;border-top:1px solid #E2E8F0">
+  <div style="max-width:900px;margin:0 auto;padding:0 32px">
+    <p style="font-size:13px;color:#718096;line-height:1.7;text-align:center">
+      <strong style="color:#1A365D">Jhaz Operador Logístico S.A.C.</strong> — Empresa peruana de transporte de carga con sede en Lima. 
+      Fundada en 2015, con más de 10 años de experiencia en logística nacional e internacional. 
+      Proveedor certificado para proyectos de minería, energía y construcción en todo el Perú. 
+      RUC: 20600135261 · San Miguel, Lima, Perú · <a href="contacto.html" style="color:#E8950A">comercial@jhaz.com.pe</a>
+    </p>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">Jhaz · Confianza que llega a destino</div>
+        <p class="footer-desc">Soluciones integrales de transporte y distribución para el mercado peruano y global.</p>
+        <div class="footer-badge"><span class="footer-dot"></span>RNP Activo</div><br>
+        <div class="footer-badge" style="margin-top:6px"><span class="footer-dot"></span>SUNAT · MTC vigente</div>
+      </div>
+      <div class="footer-col"><h4>Servicios</h4><ul><li><a href="servicios.html">Transporte Nacional</a></li><li><a href="servicios.html">Carga Internacional</a></li><li><a href="servicios.html">Carga MATPEL</a></li><li><a href="servicios.html">Cama baja y plataformas</a></li></ul></div>
+      <div class="footer-col"><h4>Empresa</h4><ul><li><a href="nosotros.html">Nuestra Historia</a></li><li><a href="nosotros.html">Misión y Visión</a></li><li><a href="nosotros.html#proyectos">Proyectos</a></li><li><a href="portals/portal.html">Portal del Cliente</a></li></ul></div>
+      <div class="footer-col"><h4>Contacto</h4><ul><li><a href="tel:+51991913935">+51 991 913 935</a></li><li><a href="tel:+51933428035">+51 933 428 035</a></li><li><a href="mailto:comercial@jhaz.com.pe">comercial@jhaz.com.pe</a></li><li><span style="color:rgba(255,255,255,.5);font-size:13px">San Miguel, Lima, Perú</span></li><li><span style="color:rgba(255,255,255,.5);font-size:13px">RUC 20600135261</span></li></ul></div>
+    </div>
+    <div class="footer-bottom"><span>© 2026 Jhaz Operador Logístico S.A.C.</span><div class="footer-bottom-links"><a href="#">Términos</a><a href="#">Privacidad</a><a href="#">Reclamaciones</a></div></div>
+  </div>
+</footer>
+<a href="https://wa.me/+51991913935" target="_blank" class="wa-float"><svg width="26" height="26" fill="white" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.72.938 3.659 1.435 5.632 1.435h.008c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+<script>
+(function(){if(!('IntersectionObserver' in window)){document.querySelectorAll('.rev').forEach(function(e){e.classList.add('in')});return}var io=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){var s=[].slice.call(e.target.parentElement.querySelectorAll('.rev'));e.target.style.transitionDelay=Math.min(s.indexOf(e.target)*80,280)+'ms';e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.1,rootMargin:'0px 0px -40px 0px'});document.querySelectorAll('.rev').forEach(function(e){io.observe(e)});})();
+</script>
+</body>
+</html>

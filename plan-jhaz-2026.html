@@ -1,0 +1,1262 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jhaz · Plan Estratégico Comercial 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+/* ========================================
+   JHAZ PLAN EJECUTIVO 2026
+   Formato: A4 Horizontal (297mm × 210mm)
+   Paleta: Navy + Naranja
+   ======================================== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+body { font-family: 'Inter', sans-serif; background: #E8ECF0; }
+
+:root {
+  --navy: #1A365D;
+  --navy-dark: #0F2240;
+  --navy-mid: #234172;
+  --navy-light: #2D5299;
+  --orange: #F6AD55;
+  --orange-dark: #E8950A;
+  --orange-pale: #FEF3C7;
+  --white: #FFFFFF;
+  --surface: #F7FAFC;
+  --surface-100: #EDF2F7;
+  --border: #E2E8F0;
+  --text: #1A202C;
+  --t600: #4A5568;
+  --t400: #718096;
+  --success: #38A169;
+  --success-pale: #F0FFF4;
+  --danger: #E53E3E;
+  --danger-pale: #FFF5F5;
+}
+
+/* === PAGE SYSTEM === */
+@page { size: A4 landscape; margin: 0; }
+
+.page {
+  width: 297mm;
+  height: 210mm;
+  background: var(--white);
+  overflow: hidden;
+  position: relative;
+  page-break-after: always;
+  break-after: page;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Screen preview spacing */
+@media screen {
+  body { padding: 20px; }
+  .page {
+    margin: 0 auto 24px auto;
+    box-shadow: 0 8px 40px rgba(0,0,0,.2);
+    border-radius: 4px;
+  }
+}
+
+/* Typography */
+.t-hero { font-size: 42px; font-weight: 900; letter-spacing: -.035em; line-height: 1.0; }
+.t-h1 { font-size: 26px; font-weight: 800; letter-spacing: -.025em; line-height: 1.1; }
+.t-h2 { font-size: 20px; font-weight: 700; letter-spacing: -.015em; line-height: 1.2; }
+.t-h3 { font-size: 14px; font-weight: 700; letter-spacing: -.01em; }
+.t-body { font-size: 11px; line-height: 1.55; color: var(--t600); }
+.t-sm { font-size: 9.5px; color: var(--t400); line-height: 1.4; }
+.t-label { font-size: 8.5px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+.t-orange { color: var(--orange-dark); }
+.t-navy { color: var(--navy); }
+.t-white { color: var(--white); }
+.t-white-dim { color: rgba(255,255,255,.65); }
+
+/* Layout utilities */
+.flex { display: flex; }
+.col { flex-direction: column; }
+.gap-4 { gap: 4px; } .gap-6 { gap: 6px; } .gap-8 { gap: 8px; }
+.gap-10 { gap: 10px; } .gap-12 { gap: 12px; } .gap-16 { gap: 16px; }
+.grow { flex: 1; }
+.items-c { align-items: center; }
+.items-s { align-items: flex-start; }
+.justify-b { justify-content: space-between; }
+.justify-c { justify-content: center; }
+
+/* Page header strip */
+.pg-header {
+  background: var(--navy);
+  padding: 10px 24px;
+  display: flex; align-items: center; justify-content: space-between;
+  flex-shrink: 0;
+}
+.pg-header-brand { display: flex; align-items: center; gap: 8px; }
+.pg-header-logo { width: 24px; height: 24px; background: var(--orange); border-radius: 5px; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 900; color: var(--navy-dark); }
+.pg-header-name { font-size: 12px; font-weight: 700; color: white; }
+.pg-header-title { font-size: 10px; color: rgba(255,255,255,.5); font-weight: 500; }
+.pg-header-pg { font-size: 9px; color: rgba(255,255,255,.35); font-weight: 500; }
+
+/* Orange accent line */
+.accent-bar { height: 3px; background: linear-gradient(to right, var(--orange), var(--orange-dark)); flex-shrink: 0; }
+
+/* Content area */
+.pg-body { flex: 1; overflow: hidden; }
+
+/* Cards */
+.card { background: var(--white); border: 1.5px solid var(--border); border-radius: 10px; }
+.card-navy { background: var(--navy); border-radius: 10px; }
+.card-surface { background: var(--surface); border: 1.5px solid var(--border); border-radius: 10px; }
+.card-orange { background: var(--orange-pale); border: 1.5px solid rgba(246,173,85,.4); border-radius: 10px; }
+.card-success { background: var(--success-pale); border: 1.5px solid rgba(56,161,105,.25); border-radius: 10px; }
+.card-danger { background: var(--danger-pale); border: 1.5px solid rgba(229,62,62,.2); border-radius: 10px; }
+
+/* Tags */
+.tag { display: inline-flex; align-items: center; padding: 3px 8px; border-radius: 999px; font-size: 8.5px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+.tag-orange { background: var(--orange-pale); color: var(--orange-dark); }
+.tag-navy { background: rgba(26,54,93,.1); color: var(--navy); }
+.tag-success { background: var(--success-pale); color: var(--success); border: 1px solid rgba(56,161,105,.2); }
+.tag-danger { background: var(--danger-pale); color: var(--danger); }
+
+/* Orange section tag */
+.section-tag { display: inline-flex; align-items: center; gap: 6px; color: var(--orange-dark); }
+.section-tag::before { content: ''; width: 16px; height: 2px; background: var(--orange-dark); }
+
+/* Divider */
+.divider { width: 1px; background: var(--border); align-self: stretch; flex-shrink: 0; }
+.divider-h { height: 1px; background: var(--border); }
+
+/* Bullet */
+.bullet { width: 5px; height: 5px; border-radius: 999px; flex-shrink: 0; }
+.bul-orange { background: var(--orange); }
+.bul-navy { background: var(--navy); }
+.bul-success { background: var(--success); }
+.bul-gray { background: var(--t400); }
+
+/* ============================================================
+   PAGE 1: PORTADA
+   ============================================================ */
+.p1 { flex-direction: row; }
+.p1-left {
+  width: 58%;
+  background: var(--navy-dark);
+  position: relative;
+  display: flex; flex-direction: column;
+  justify-content: space-between;
+  padding: 28px 32px;
+  overflow: hidden;
+}
+/* Background image simulation with gradient patterns */
+.p1-bg-pattern {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 120% 80% at 110% 120%, rgba(246,173,85,.12) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 60% at -10% -10%, rgba(26,54,93,.8) 0%, transparent 70%),
+    linear-gradient(135deg, rgba(15,34,64,1) 0%, rgba(26,54,93,.95) 100%);
+}
+/* Truck silhouette lines (decorative) */
+.p1-lines {
+  position: absolute; bottom: 0; right: 0; opacity: .06;
+  width: 280px; height: 140px;
+}
+.p1-right {
+  width: 42%;
+  background: var(--surface);
+  display: flex; flex-direction: column;
+  justify-content: space-between;
+  padding: 24px 24px;
+}
+.p1-stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.p1-stat {
+  background: var(--white); border: 1.5px solid var(--border);
+  border-radius: 10px; padding: 14px;
+  border-left: 3px solid var(--orange);
+}
+.p1-stat-num { font-size: 28px; font-weight: 900; color: var(--navy); letter-spacing: -.04em; line-height: 1; }
+.p1-stat-sup { font-size: 14px; color: var(--orange-dark); vertical-align: super; font-weight: 800; }
+.p1-stat-label { font-size: 9px; color: var(--t400); font-weight: 600; text-transform: uppercase; letter-spacing: .1em; margin-top: 4px; }
+.p1-client-strip {
+  background: var(--white); border: 1.5px solid var(--border);
+  border-radius: 10px; padding: 14px;
+}
+.p1-client-logos { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+.p1-client-pill {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 5px; padding: 4px 9px;
+  font-size: 9px; font-weight: 700; color: var(--navy);
+}
+.p1-client-pill.highlight { background: rgba(246,173,85,.12); border-color: rgba(246,173,85,.4); color: var(--orange-dark); }
+
+/* ============================================================
+   PAGE 2: DIAGNÓSTICO
+   ============================================================ */
+.p2-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; height: 100%; padding: 16px 20px; }
+.problem-item { display: flex; align-items: flex-start; gap: 8px; margin-bottom: 10px; }
+.problem-icon { width: 22px; height: 22px; border-radius: 6px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 11px; }
+.p-red { background: var(--danger-pale); }
+.p-green { background: var(--success-pale); }
+
+/* Opportunity meter */
+.opp-meter { height: 6px; background: var(--surface-100); border-radius: 999px; overflow: hidden; margin-top: 4px; }
+.opp-meter-fill { height: 100%; border-radius: 999px; background: linear-gradient(to right, var(--navy), var(--orange)); }
+
+/* ============================================================
+   PAGE 3: FUNNEL COMERCIAL
+   ============================================================ */
+.funnel-stage {
+  flex: 1;
+  display: flex; flex-direction: column; align-items: center;
+  position: relative;
+}
+/* Funnel trapezoid using clip-path */
+.funnel-box {
+  width: 100%; flex: 1;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center;
+  padding: 14px 10px;
+  position: relative;
+  border-radius: 8px;
+}
+.funnel-arrow {
+  width: 0; height: 0;
+  border-top: 12px solid currentColor;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  margin: 0 -10px;
+  flex-shrink: 0;
+  z-index: 1;
+}
+
+/* ============================================================
+   PAGE 4: STACK DE HERRAMIENTAS
+   ============================================================ */
+.tool-card {
+  background: var(--white);
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 12px;
+}
+.tool-card-name { font-size: 11px; font-weight: 700; color: var(--navy); }
+.tool-card-desc { font-size: 9px; color: var(--t400); margin-top: 2px; line-height: 1.35; }
+.tool-card-cost { font-size: 10px; font-weight: 700; }
+.cost-free { color: var(--success); }
+.cost-paid { color: var(--orange-dark); }
+
+/* ============================================================
+   PAGE 5: ROADMAP / GANTT
+   ============================================================ */
+.gantt-row {
+  display: flex; align-items: center; gap: 0;
+  height: 28px; border-radius: 0;
+}
+.gantt-label { width: 120px; flex-shrink: 0; font-size: 9.5px; font-weight: 600; color: var(--navy); padding-right: 10px; }
+.gantt-grid { flex: 1; display: grid; position: relative; }
+.gantt-bar {
+  height: 18px; border-radius: 4px;
+  display: flex; align-items: center; padding: 0 8px;
+  font-size: 8.5px; font-weight: 700; color: white;
+  position: absolute; top: 5px;
+}
+.gantt-week-header { display: flex; }
+.gantt-wk { flex: 1; text-align: center; font-size: 8px; color: var(--t400); font-weight: 600; border-right: 1px solid var(--border); padding: 2px 0; }
+
+/* ============================================================
+   PAGE 6: KPIs Y PROYECCIONES
+   ============================================================ */
+.kpi-card {
+  background: var(--white); border: 1.5px solid var(--border);
+  border-radius: 10px; padding: 14px;
+  text-align: center; position: relative; overflow: hidden;
+}
+.kpi-num { font-size: 26px; font-weight: 900; letter-spacing: -.04em; line-height: 1; }
+.kpi-label { font-size: 9px; font-weight: 600; color: var(--t400); text-transform: uppercase; letter-spacing: .1em; margin-top: 4px; }
+.kpi-note { font-size: 8.5px; color: var(--t400); margin-top: 4px; }
+.kpi-card::after {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(to right, var(--navy), var(--orange));
+}
+
+/* SVG Bar Chart */
+.bar-chart { width: 100%; }
+</style>
+</head>
+<body>
+
+<!-- ===========================
+     PÁGINA 1: PORTADA
+     =========================== -->
+<div class="page p1">
+  <!-- LEFT: Hero -->
+  <div class="p1-left">
+    <div class="p1-bg-pattern"></div>
+
+    <!-- Decorative SVG grid lines -->
+    <svg class="p1-lines" viewBox="0 0 280 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="0" y="60" width="280" height="2" fill="white"/>
+      <rect x="0" y="90" width="280" height="1" fill="white"/>
+      <rect x="40" y="0" width="1" height="140" fill="white"/>
+      <rect x="120" y="0" width="1" height="140" fill="white"/>
+      <rect x="200" y="0" width="1" height="140" fill="white"/>
+      <circle cx="40" cy="60" r="4" fill="white" opacity=".5"/>
+      <circle cx="120" cy="60" r="4" fill="white" opacity=".5"/>
+      <circle cx="200" cy="60" r="4" fill="white" opacity=".5"/>
+      <path d="M20,90 L60,60 L120,80 L200,55 L260,70" stroke="white" stroke-width="1.5" opacity=".3"/>
+    </svg>
+
+    <div style="position:relative;z-index:1">
+      <!-- Brand -->
+      <div class="flex items-c gap-8" style="margin-bottom:24px">
+        <div style="width:38px;height:38px;background:var(--orange);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900;color:var(--navy-dark)">JH</div>
+        <div>
+          <div style="font-size:16px;font-weight:800;color:white;line-height:1">Jhaz</div>
+          <div style="font-size:9px;color:rgba(255,255,255,.5);font-weight:500;letter-spacing:.12em;text-transform:uppercase">Operador Logístico SAC</div>
+        </div>
+      </div>
+
+      <!-- Main title -->
+      <div class="t-label section-tag t-white-dim" style="margin-bottom:14px">Documento confidencial · 2026</div>
+      <h1 class="t-hero t-white" style="margin-bottom:10px">Plan Estratégico<br>Comercial 2026</h1>
+      <p style="font-size:13px;color:rgba(255,255,255,.6);line-height:1.5;max-width:280px;margin-bottom:0">
+        Diagnóstico, funnel de ventas, stack de herramientas y roadmap de implementación para el crecimiento acelerado del área comercial.
+      </p>
+    </div>
+
+    <div style="position:relative;z-index:1">
+      <div class="divider-h" style="background:rgba(255,255,255,.1);margin-bottom:14px"></div>
+      <div class="flex items-c justify-b">
+        <div>
+          <div style="font-size:9px;color:rgba(255,255,255,.4);font-weight:500;letter-spacing:.1em;text-transform:uppercase;margin-bottom:3px">Elaborado por</div>
+          <div style="font-size:11px;color:rgba(255,255,255,.7);font-weight:600">Área Comercial · Jhaz Operador Logístico</div>
+        </div>
+        <div style="text-align:right">
+          <div style="font-size:9px;color:rgba(255,255,255,.4);margin-bottom:2px">Mayo 2026</div>
+          <div style="font-size:9px;color:rgba(255,255,255,.4)">Lima, Perú · RUC 20600135261</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RIGHT: Stats + Clients -->
+  <div class="p1-right">
+    <div>
+      <div class="t-label t-orange section-tag" style="margin-bottom:12px">Activos actuales</div>
+      <div class="p1-stats-grid">
+        <div class="p1-stat">
+          <div class="p1-stat-num">10<span class="p1-stat-sup">+</span></div>
+          <div class="p1-stat-label">Años en el mercado</div>
+        </div>
+        <div class="p1-stat">
+          <div class="p1-stat-num">12<span class="p1-stat-sup">+</span></div>
+          <div class="p1-stat-label">Clientes activos</div>
+        </div>
+        <div class="p1-stat">
+          <div class="p1-stat-num">10<span class="p1-stat-sup">k+</span></div>
+          <div class="p1-stat-label">BD de prospectos</div>
+        </div>
+        <div class="p1-stat">
+          <div class="p1-stat-num">30<span class="p1-stat-sup">d</span></div>
+          <div class="p1-stat-label">Crédito empresarial</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="p1-client-strip">
+      <div class="t-label t-orange" style="margin-bottom:6px">Clientes de referencia actuales</div>
+      <div class="p1-client-logos">
+        <div class="p1-client-pill highlight">Acciona</div>
+        <div class="p1-client-pill highlight">DP World</div>
+        <div class="p1-client-pill">Cumbra</div>
+        <div class="p1-client-pill">Cempro</div>
+        <div class="p1-client-pill">ESCO</div>
+        <div class="p1-client-pill">Flanders</div>
+        <div class="p1-client-pill">Omni Logistics</div>
+        <div class="p1-client-pill">Wic Logistics</div>
+        <div class="p1-client-pill">IPH Grupo</div>
+        <div class="p1-client-pill">Traffictech</div>
+        <div class="p1-client-pill">Fulter</div>
+        <div class="p1-client-pill">Lahanseatica</div>
+      </div>
+    </div>
+
+    <div>
+      <div class="t-label t-orange section-tag" style="margin-bottom:8px">Proyectos de referencia</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px">
+        <div style="background:var(--white);border:1.5px solid var(--border);border-radius:7px;padding:8px 10px">
+          <div style="font-size:9px;font-weight:700;color:var(--navy)">Mina Quellaveco</div>
+          <div style="font-size:8px;color:var(--t400)">Anglo American · Cobre</div>
+        </div>
+        <div style="background:var(--white);border:1.5px solid var(--border);border-radius:7px;padding:8px 10px">
+          <div style="font-size:9px;font-weight:700;color:var(--navy)">Refinería Talara</div>
+          <div style="font-size:8px;color:var(--t400)">Petroperú · $5B inversión</div>
+        </div>
+        <div style="background:var(--white);border:1.5px solid var(--border);border-radius:7px;padding:8px 10px">
+          <div style="font-size:9px;font-weight:700;color:var(--navy)">Punta Lomitas</div>
+          <div style="font-size:8px;color:var(--t400)">Acciona · Energía eólica</div>
+        </div>
+        <div style="background:var(--white);border:1.5px solid var(--border);border-radius:7px;padding:8px 10px">
+          <div style="font-size:9px;font-weight:700;color:var(--navy)">Cementera Potosí</div>
+          <div style="font-size:8px;color:var(--t400)">Internacional · Bolivia</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===========================
+     PÁGINA 2: DIAGNÓSTICO
+     =========================== -->
+<div class="page">
+  <div class="pg-header">
+    <div class="pg-header-brand">
+      <div class="pg-header-logo">JH</div>
+      <div class="pg-header-name">Jhaz Operador Logístico</div>
+    </div>
+    <div class="pg-header-title">Diagnóstico Actual · Dónde estamos y a dónde vamos</div>
+    <div class="pg-header-pg">02 / 06</div>
+  </div>
+  <div class="accent-bar"></div>
+
+  <div style="flex:1;display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;padding:14px 20px;overflow:hidden">
+
+    <!-- Col 1: Problemas -->
+    <div class="flex col gap-10">
+      <div class="t-label section-tag" style="color:var(--danger)">Brechas a resolver</div>
+
+      <div class="card-danger" style="padding:12px 14px">
+        <div class="t-h3 t-navy" style="margin-bottom:8px">Operación 100% manual</div>
+        <div class="problem-item">
+          <div class="problem-icon p-red">❌</div>
+          <div>
+            <div style="font-size:10px;font-weight:600;color:var(--navy)">Sin CRM ni pipeline de ventas</div>
+            <div class="t-sm">Oportunidades se pierden por seguimiento en WhatsApp y Excel sin estructura</div>
+          </div>
+        </div>
+        <div class="problem-item">
+          <div class="problem-icon p-red">❌</div>
+          <div>
+            <div style="font-size:10px;font-weight:600;color:var(--navy)">Tracking manual por grupos WA</div>
+            <div class="t-sm">5+ horas/semana en gestión de status que debería ser automático</div>
+          </div>
+        </div>
+        <div class="problem-item">
+          <div class="problem-icon p-red">❌</div>
+          <div>
+            <div style="font-size:10px;font-weight:600;color:var(--navy)">Captación por referidos únicamente</div>
+            <div class="t-sm">Sin inbound, sin SEO, sin outbound estructurado — crecimiento limitado</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-danger" style="padding:12px 14px">
+        <div class="t-h3 t-navy" style="margin-bottom:8px">Visibilidad digital = 0</div>
+        <div class="problem-item">
+          <div class="problem-icon p-red">❌</div>
+          <div>
+            <div style="font-size:10px;font-weight:600;color:var(--navy)">Sitio actual invisible en Google</div>
+            <div class="t-sm">React SPA sin SSR — Google no puede leer el contenido</div>
+          </div>
+        </div>
+        <div class="problem-item">
+          <div class="problem-icon p-red">❌</div>
+          <div>
+            <div style="font-size:10px;font-weight:600;color:var(--navy)">Sin Google Business Profile</div>
+            <div class="t-sm">Competidores con peor servicio aparecen primero en búsquedas locales</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Urgency meter -->
+      <div class="card-orange" style="padding:10px 12px">
+        <div class="t-label t-orange" style="margin-bottom:6px">Costo de la inacción</div>
+        <div style="font-size:11px;color:var(--navy)">Cada mes sin CRM activo = <strong>~8-15 oportunidades perdidas</strong> que van a la competencia formal</div>
+      </div>
+    </div>
+
+    <!-- Col 2: Activos (lo que ya tienen) -->
+    <div class="flex col gap-10">
+      <div class="t-label section-tag t-orange">Activos ya disponibles</div>
+
+      <div class="card-success" style="padding:12px 14px">
+        <div class="t-h3 t-navy" style="margin-bottom:8px">Diferenciadores únicos</div>
+        <div class="problem-item">
+          <div class="problem-icon p-green">✓</div>
+          <div>
+            <div style="font-size:10px;font-weight:600;color:var(--navy)">Crédito 30 días sin garantías</div>
+            <div class="t-sm">El competidor más cercano no lo ofrece — convierte el servicio en herramienta financiera</div>
+          </div>
+        </div>
+        <div class="problem-item">
+          <div class="problem-icon p-green">✓</div>
+          <div>
+            <div style="font-size:10px;font-weight:600;color:var(--navy)">Permiso MATPEL + acceso Callao</div>
+            <div class="t-sm">Habilitaciones que requieren meses obtener — barrera de entrada alta para competidores</div>
+          </div>
+        </div>
+        <div class="problem-item">
+          <div class="problem-icon p-green">✓</div>
+          <div>
+            <div style="font-size:10px;font-weight:600;color:var(--navy)">Cartera de clientes Fortune-500</div>
+            <div class="t-sm">Acciona + DP World = prueba social de primer nivel para nuevas prospecciones</div>
+          </div>
+        </div>
+        <div class="problem-item">
+          <div class="problem-icon p-green">✓</div>
+          <div>
+            <div style="font-size:10px;font-weight:600;color:var(--navy)">RNP activo + SUNAT formal</div>
+            <div class="t-sm">Pueden contratar con Estado + empresas que exigen proveedor formal</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Posicionamiento visual -->
+      <div class="card" style="padding:12px 14px">
+        <div class="t-label t-navy" style="margin-bottom:10px">Posicionamiento propuesto</div>
+        <div style="background:var(--navy);border-radius:7px;padding:12px;text-align:center">
+          <div style="font-size:11px;font-weight:800;color:white;line-height:1.3">"El operador logístico formal<br>que te da crédito 30 días<br>y visibilidad total de tu carga"</div>
+        </div>
+        <div style="margin-top:8px;font-size:9px;color:var(--t400)">No competir por precio — competir por formalidad, crédito y tranquilidad operacional</div>
+      </div>
+    </div>
+
+    <!-- Col 3: Oportunidad de mercado -->
+    <div class="flex col gap-10">
+      <div class="t-label section-tag t-navy">Oportunidad de mercado</div>
+
+      <div class="card" style="padding:12px 14px;flex:1">
+        <div class="t-h3 t-navy" style="margin-bottom:10px">Segmentación ICP</div>
+
+        <div style="margin-bottom:8px">
+          <div class="flex items-c justify-b" style="margin-bottom:3px">
+            <div style="font-size:10px;font-weight:700;color:var(--navy)">Tier A — Grandes empresas</div>
+            <span class="tag tag-orange">200 cuentas</span>
+          </div>
+          <div class="opp-meter"><div class="opp-meter-fill" style="width:90%"></div></div>
+          <div class="t-sm" style="margin-top:2px">Prioridad máxima — dueña de la cuenta, relación directa C-level</div>
+        </div>
+
+        <div style="margin-bottom:8px">
+          <div class="flex items-c justify-b" style="margin-bottom:3px">
+            <div style="font-size:10px;font-weight:700;color:var(--navy)">Tier B — Medianas empresas</div>
+            <span class="tag tag-navy">800 cuentas</span>
+          </div>
+          <div class="opp-meter"><div class="opp-meter-fill" style="width:70%"></div></div>
+          <div class="t-sm" style="margin-top:2px">Secuencias email automatizadas + LinkedIn outreach</div>
+        </div>
+
+        <div style="margin-bottom:12px">
+          <div class="flex items-c justify-b" style="margin-bottom:3px">
+            <div style="font-size:10px;font-weight:700;color:var(--navy)">Tier C — Resto del mercado</div>
+            <span class="tag" style="background:var(--surface);color:var(--t600)">9,000+ cuentas</span>
+          </div>
+          <div class="opp-meter"><div class="opp-meter-fill" style="width:40%;background:var(--t400)"></div></div>
+          <div class="t-sm" style="margin-top:2px">Automatización masiva — inbound SEO + Google Ads eventual</div>
+        </div>
+
+        <div class="divider-h" style="margin-bottom:10px"></div>
+
+        <div class="t-label t-navy" style="margin-bottom:6px">Sectores prioritarios</div>
+        <div style="display:flex;flex-wrap:wrap;gap:5px">
+          <span class="tag tag-orange">Minería</span>
+          <span class="tag tag-orange">Construcción</span>
+          <span class="tag tag-navy">Importadores</span>
+          <span class="tag tag-navy">FMCG / Retail</span>
+          <span class="tag tag-navy">Farmacéutico</span>
+          <span class="tag" style="background:var(--surface);color:var(--t600)">Energía</span>
+          <span class="tag" style="background:var(--surface);color:var(--t600)">Agroexportación</span>
+        </div>
+      </div>
+
+      <div class="card-orange" style="padding:10px 12px">
+        <div class="flex items-c gap-8">
+          <div style="font-size:24px;font-weight:900;color:var(--navy)">S/2.4M</div>
+          <div>
+            <div style="font-size:9px;font-weight:700;color:var(--navy)">Potencial año 1 adicional</div>
+            <div class="t-sm" style="color:var(--t600)">Basado en captura del 15% del Tier A con ticket promedio S/12,000/mes</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===========================
+     PÁGINA 3: FUNNEL COMERCIAL
+     =========================== -->
+<div class="page">
+  <div class="pg-header">
+    <div class="pg-header-brand">
+      <div class="pg-header-logo">JH</div>
+      <div class="pg-header-name">Jhaz Operador Logístico</div>
+    </div>
+    <div class="pg-header-title">Funnel Comercial · 4 Etapas de Captación y Retención</div>
+    <div class="pg-header-pg">03 / 06</div>
+  </div>
+  <div class="accent-bar"></div>
+
+  <div style="flex:1;display:flex;flex-direction:column;padding:14px 20px;gap:12px;overflow:hidden">
+
+    <!-- Funnel visual horizontal -->
+    <div style="display:flex;align-items:stretch;gap:0;height:90px;border-radius:10px;overflow:hidden">
+      <!-- E1: Captación -->
+      <div style="flex:1.3;background:var(--navy-dark);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:10px;position:relative">
+        <div style="font-size:8.5px;font-weight:700;color:rgba(255,255,255,.5);letter-spacing:.1em;text-transform:uppercase;margin-bottom:3px">Etapa 1</div>
+        <div style="font-size:15px;font-weight:800;color:white">CAPTACIÓN</div>
+        <div style="font-size:9px;color:rgba(255,255,255,.5);margin-top:2px">10,000 prospectos identificados</div>
+        <div style="position:absolute;right:-14px;top:0;bottom:0;width:0;height:0;border-top:45px solid transparent;border-bottom:45px solid transparent;border-left:14px solid var(--navy-dark);z-index:2"></div>
+      </div>
+      <!-- E2: Calificación -->
+      <div style="flex:1;background:var(--navy-mid);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:10px 20px;position:relative">
+        <div style="font-size:8.5px;font-weight:700;color:rgba(255,255,255,.5);letter-spacing:.1em;text-transform:uppercase;margin-bottom:3px">Etapa 2</div>
+        <div style="font-size:15px;font-weight:800;color:white">CAPTURA</div>
+        <div style="font-size:9px;color:rgba(255,255,255,.5);margin-top:2px">~800 leads calificados</div>
+        <div style="position:absolute;right:-14px;top:0;bottom:0;width:0;height:0;border-top:45px solid transparent;border-bottom:45px solid transparent;border-left:14px solid var(--navy-mid);z-index:2"></div>
+      </div>
+      <!-- E3: Conversión -->
+      <div style="flex:.85;background:var(--orange-dark);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:10px 20px;position:relative">
+        <div style="font-size:8.5px;font-weight:700;color:rgba(255,255,255,.6);letter-spacing:.1em;text-transform:uppercase;margin-bottom:3px">Etapa 3</div>
+        <div style="font-size:15px;font-weight:800;color:white">CONVERSIÓN</div>
+        <div style="font-size:9px;color:rgba(255,255,255,.7);margin-top:2px">~160 propuestas enviadas</div>
+        <div style="position:absolute;right:-14px;top:0;bottom:0;width:0;height:0;border-top:45px solid transparent;border-bottom:45px solid transparent;border-left:14px solid var(--orange-dark);z-index:2"></div>
+      </div>
+      <!-- E4: Retención -->
+      <div style="flex:.7;background:var(--success);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:10px 20px">
+        <div style="font-size:8.5px;font-weight:700;color:rgba(255,255,255,.6);letter-spacing:.1em;text-transform:uppercase;margin-bottom:3px">Etapa 4</div>
+        <div style="font-size:15px;font-weight:800;color:white">RETENCIÓN</div>
+        <div style="font-size:9px;color:rgba(255,255,255,.7);margin-top:2px">~32 nuevos clientes/año</div>
+      </div>
+    </div>
+
+    <!-- Detalle por etapa — 4 columnas -->
+    <div style="flex:1;display:grid;grid-template-columns:1.3fr 1fr .85fr .7fr;gap:10px">
+
+      <!-- E1 Detail -->
+      <div class="card" style="padding:11px 12px">
+        <div class="t-label" style="color:var(--navy-dark);margin-bottom:7px">Herramientas y acciones</div>
+        <div style="display:flex;flex-direction:column;gap:5px">
+          <div class="flex items-c gap-6"><div class="bullet bul-navy"></div><div style="font-size:9.5px">BD 10k empresas validada SUNAT</div></div>
+          <div class="flex items-c gap-6"><div class="bullet bul-navy"></div><div style="font-size:9.5px">Google Business Profile activo</div></div>
+          <div class="flex items-c gap-6"><div class="bullet bul-navy"></div><div style="font-size:9.5px">SEO: blog 2 artículos/semana</div></div>
+          <div class="flex items-c gap-6"><div class="bullet bul-navy"></div><div style="font-size:9.5px">LinkedIn corporativo + perfil ejecutivo</div></div>
+          <div class="flex items-c gap-6"><div class="bullet bul-navy"></div><div style="font-size:9.5px">Apollo.io secuencias outbound</div></div>
+        </div>
+        <div class="divider-h" style="margin:7px 0"></div>
+        <div class="flex items-c justify-b">
+          <div style="font-size:9px;color:var(--t400)">Meta mensual</div>
+          <div style="font-size:11px;font-weight:700;color:var(--navy)">200 nuevos contactos</div>
+        </div>
+      </div>
+
+      <!-- E2 Detail -->
+      <div class="card" style="padding:11px 12px">
+        <div class="t-label" style="color:var(--navy-mid);margin-bottom:7px">Calificación BANT</div>
+        <div style="display:flex;flex-direction:column;gap:5px">
+          <div class="flex items-c gap-6"><div class="bullet" style="background:var(--navy-mid)"></div><div style="font-size:9.5px">Budget: mueven carga regular</div></div>
+          <div class="flex items-c gap-6"><div class="bullet" style="background:var(--navy-mid)"></div><div style="font-size:9.5px">Authority: área de compras/logística</div></div>
+          <div class="flex items-c gap-6"><div class="bullet" style="background:var(--navy-mid)"></div><div style="font-size:9.5px">Need: factura + crédito + formal</div></div>
+          <div class="flex items-c gap-6"><div class="bullet" style="background:var(--navy-mid)"></div><div style="font-size:9.5px">Timeline: próximos 3 meses</div></div>
+        </div>
+        <div class="divider-h" style="margin:7px 0"></div>
+        <div style="background:rgba(246,173,85,.1);border-radius:6px;padding:6px 8px">
+          <div style="font-size:9px;color:var(--navy)">Lead magnet: <strong>"Guía: Crédito 30 días para tu operación logística"</strong></div>
+        </div>
+      </div>
+
+      <!-- E3 Detail -->
+      <div class="card" style="padding:11px 12px">
+        <div class="t-label" style="color:var(--orange-dark);margin-bottom:7px">Herramientas de cierre</div>
+        <div style="display:flex;flex-direction:column;gap:5px">
+          <div class="flex items-c gap-6"><div class="bullet bul-orange"></div><div style="font-size:9.5px">Propuesta en PDF branded</div></div>
+          <div class="flex items-c gap-6"><div class="bullet bul-orange"></div><div style="font-size:9.5px">Demo del portal de tracking</div></div>
+          <div class="flex items-c gap-6"><div class="bullet bul-orange"></div><div style="font-size:9.5px">Prueba piloto 30 días gratis</div></div>
+          <div class="flex items-c gap-6"><div class="bullet bul-orange"></div><div style="font-size:9.5px">Cotizador web instantáneo</div></div>
+        </div>
+        <div class="divider-h" style="margin:7px 0"></div>
+        <div class="flex items-c justify-b">
+          <div style="font-size:9px;color:var(--t400)">Tasa de cierre meta</div>
+          <div style="font-size:11px;font-weight:700;color:var(--orange-dark)">20%</div>
+        </div>
+      </div>
+
+      <!-- E4 Detail -->
+      <div class="card" style="padding:11px 12px">
+        <div class="t-label" style="color:var(--success);margin-bottom:7px">Retención y expansión</div>
+        <div style="display:flex;flex-direction:column;gap:5px">
+          <div class="flex items-c gap-6"><div class="bullet bul-success"></div><div style="font-size:9.5px">Portal cliente activo</div></div>
+          <div class="flex items-c gap-6"><div class="bullet bul-success"></div><div style="font-size:9.5px">NPS mensual automático</div></div>
+          <div class="flex items-c gap-6"><div class="bullet bul-success"></div><div style="font-size:9.5px">Revisión cuenta trimestral</div></div>
+          <div class="flex items-c gap-6"><div class="bullet bul-success"></div><div style="font-size:9.5px">Programa de referidos</div></div>
+        </div>
+        <div class="divider-h" style="margin:7px 0"></div>
+        <div class="flex items-c justify-b">
+          <div style="font-size:9px;color:var(--t400)">Meta retención</div>
+          <div style="font-size:11px;font-weight:700;color:var(--success)">85%</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Loop de referidos -->
+    <div style="background:var(--navy);border-radius:8px;padding:10px 16px;display:flex;align-items:center;gap:16px">
+      <div style="font-size:10px;font-weight:700;color:var(--orange)">↻ LOOP DE REFERIDOS</div>
+      <div style="flex:1;height:1px;background:rgba(255,255,255,.1)"></div>
+      <div style="font-size:9.5px;color:rgba(255,255,255,.7)">Cliente satisfecho → referido a empresa similar → ingresa al funnel en E2 → conversión 2x más rápida → nuevo loop</div>
+      <div style="flex:1;height:1px;background:rgba(255,255,255,.1)"></div>
+      <div style="font-size:10px;font-weight:700;color:white">Target: 40% de nuevos clientes por referidos en el año 2</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===========================
+     PÁGINA 4: STACK DE HERRAMIENTAS
+     =========================== -->
+<div class="page">
+  <div class="pg-header">
+    <div class="pg-header-brand">
+      <div class="pg-header-logo">JH</div>
+      <div class="pg-header-name">Jhaz Operador Logístico</div>
+    </div>
+    <div class="pg-header-title">Stack de Herramientas · Inversión por Etapa</div>
+    <div class="pg-header-pg">04 / 06</div>
+  </div>
+  <div class="accent-bar"></div>
+
+  <div style="flex:1;display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;padding:14px 20px;overflow:hidden">
+
+    <!-- Fase 1 -->
+    <div class="flex col gap-8">
+      <div style="background:var(--navy);border-radius:9px;padding:10px 12px">
+        <div class="flex items-c justify-b">
+          <div>
+            <div class="t-label t-white-dim">Fase 1 · Mes 1-2</div>
+            <div style="font-size:14px;font-weight:800;color:white;margin-top:2px">Fundación</div>
+          </div>
+          <div style="text-align:right">
+            <div style="font-size:8px;color:rgba(255,255,255,.5)">Inversión mensual</div>
+            <div style="font-size:18px;font-weight:900;color:var(--orange)">$0</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex col gap-6" style="flex:1">
+        <div class="tool-card">
+          <div class="flex items-c justify-b">
+            <div class="tool-card-name">HubSpot CRM Free</div>
+            <div class="tool-card-cost cost-free">Gratis</div>
+          </div>
+          <div class="tool-card-desc">Pipeline de ventas, seguimiento de contactos, emails automatizados básicos</div>
+        </div>
+        <div class="tool-card">
+          <div class="flex items-c justify-b">
+            <div class="tool-card-name">WhatsApp Business</div>
+            <div class="tool-card-cost cost-free">Gratis</div>
+          </div>
+          <div class="tool-card-desc">Catálogo de servicios, respuestas automáticas, labels por etapa de venta</div>
+        </div>
+        <div class="tool-card">
+          <div class="flex items-c justify-b">
+            <div class="tool-card-name">Google Analytics 4 + Search Console</div>
+            <div class="tool-card-cost cost-free">Gratis</div>
+          </div>
+          <div class="tool-card-desc">Tráfico web, keywords que generan visitas, conversiones del formulario</div>
+        </div>
+        <div class="tool-card">
+          <div class="flex items-c justify-b">
+            <div class="tool-card-name">Microsoft Clarity</div>
+            <div class="tool-card-cost cost-free">Gratis</div>
+          </div>
+          <div class="tool-card-desc">Heatmaps y grabaciones de sesiones para optimizar UX del sitio</div>
+        </div>
+        <div class="tool-card">
+          <div class="flex items-c justify-b">
+            <div class="tool-card-name">Notion + Brevo Email</div>
+            <div class="tool-card-cost cost-free">Gratis</div>
+          </div>
+          <div class="tool-card-desc">Gestión de contenidos, base de conocimiento y newsletter hasta 300/día</div>
+        </div>
+        <div class="tool-card">
+          <div class="flex items-c justify-b">
+            <div class="tool-card-name">GitHub Pages (sitio web)</div>
+            <div class="tool-card-cost cost-free">Gratis</div>
+          </div>
+          <div class="tool-card-desc">Hosting del sitio rediseñado con SEO, cotizador y portal de cliente</div>
+        </div>
+      </div>
+
+      <div class="card-success" style="padding:8px 12px">
+        <div style="font-size:9.5px;color:var(--navy);font-weight:600">✓ Semana 1: HubSpot activo, BD segmentada, sitio live</div>
+      </div>
+    </div>
+
+    <!-- Fase 2 -->
+    <div class="flex col gap-8">
+      <div style="background:var(--orange-dark);border-radius:9px;padding:10px 12px">
+        <div class="flex items-c justify-b">
+          <div>
+            <div class="t-label" style="color:rgba(255,255,255,.6)">Fase 2 · Mes 2-3</div>
+            <div style="font-size:14px;font-weight:800;color:white;margin-top:2px">Aceleración</div>
+          </div>
+          <div style="text-align:right">
+            <div style="font-size:8px;color:rgba(255,255,255,.6)">Inversión mensual</div>
+            <div style="font-size:18px;font-weight:900;color:white">~$190</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex col gap-6" style="flex:1">
+        <div class="tool-card" style="border-color:rgba(232,149,10,.35)">
+          <div class="flex items-c justify-b">
+            <div class="tool-card-name">Apollo.io Starter</div>
+            <div class="tool-card-cost cost-paid">$49/mes</div>
+          </div>
+          <div class="tool-card-desc">Prospección B2B automatizada, secuencias de email, integración HubSpot</div>
+        </div>
+        <div class="tool-card" style="border-color:rgba(232,149,10,.35)">
+          <div class="flex items-c justify-b">
+            <div class="tool-card-name">LinkedIn Sales Navigator</div>
+            <div class="tool-card-cost cost-paid">$99/mes</div>
+          </div>
+          <div class="tool-card-desc">Búsqueda avanzada de decisores, InMail, alertas de cambio de empresa</div>
+        </div>
+        <div class="tool-card" style="border-color:rgba(232,149,10,.35)">
+          <div class="flex items-c justify-b">
+            <div class="tool-card-name">Claude Pro / ChatGPT</div>
+            <div class="tool-card-cost cost-paid">$20/mes</div>
+          </div>
+          <div class="tool-card-desc">Redacción de propuestas, emails personalizados, análisis de cuentas, blog</div>
+        </div>
+        <div class="tool-card">
+          <div class="flex items-c justify-b">
+            <div class="tool-card-name">NeverBounce (validación BD)</div>
+            <div class="tool-card-cost cost-paid">~$80 único</div>
+          </div>
+          <div class="tool-card-desc">Validar 10k emails antes de campañas — reduce bounce rate y mejora entregabilidad</div>
+        </div>
+        <div class="tool-card">
+          <div class="flex items-c justify-b">
+            <div class="tool-card-name">Hunter.io</div>
+            <div class="tool-card-cost cost-free">Gratis (25/mes)</div>
+          </div>
+          <div class="tool-card-desc">Verificación puntual de emails de prospectos Tier A para contacto directo</div>
+        </div>
+      </div>
+
+      <div class="card-orange" style="padding:8px 12px">
+        <div style="font-size:9.5px;color:var(--navy);font-weight:600">→ Meta: 200+ contactos/semana, 15 reuniones/mes con Tier A</div>
+      </div>
+    </div>
+
+    <!-- Resumen de inversión -->
+    <div class="flex col gap-8">
+      <div style="background:var(--surface);border:1.5px solid var(--border);border-radius:9px;padding:10px 12px">
+        <div class="t-label t-navy" style="margin-bottom:8px">Resumen de inversión anual</div>
+
+        <!-- Bar chart -->
+        <div style="margin-bottom:8px">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:5px">
+            <div style="font-size:9px;color:var(--t400);width:70px">Mes 1-2</div>
+            <div style="flex:1;background:var(--surface-100);height:14px;border-radius:3px;overflow:hidden">
+              <div style="width:5%;height:100%;background:var(--success);display:flex;align-items:center;padding-left:4px">
+                <span style="font-size:8px;color:white;font-weight:700;white-space:nowrap">$0</span>
+              </div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:5px">
+            <div style="font-size:9px;color:var(--t400);width:70px">Mes 2-3</div>
+            <div style="flex:1;background:var(--surface-100);height:14px;border-radius:3px;overflow:hidden">
+              <div style="width:40%;height:100%;background:var(--orange-dark);display:flex;align-items:center;padding-left:6px">
+                <span style="font-size:8px;color:white;font-weight:700">~$190/m</span>
+              </div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px">
+            <div style="font-size:9px;color:var(--t400);width:70px">Mes 4-12</div>
+            <div style="flex:1;background:var(--surface-100);height:14px;border-radius:3px;overflow:hidden">
+              <div style="width:65%;height:100%;background:var(--navy);display:flex;align-items:center;padding-left:6px">
+                <span style="font-size:8px;color:white;font-weight:700">~$350/m máx.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="divider-h" style="margin:8px 0"></div>
+
+        <div class="flex items-c justify-b" style="margin-bottom:4px">
+          <div style="font-size:10px;color:var(--t600)">Total año 1 (estimado)</div>
+          <div style="font-size:14px;font-weight:800;color:var(--navy)">~$2,200</div>
+        </div>
+        <div class="flex items-c justify-b">
+          <div style="font-size:9px;color:var(--t400)">Equivalente en soles</div>
+          <div style="font-size:11px;font-weight:700;color:var(--navy)">≈ S/ 8,200</div>
+        </div>
+      </div>
+
+      <div class="card" style="padding:11px 12px;flex:1">
+        <div class="t-label t-navy" style="margin-bottom:8px">ROI esperado</div>
+
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div style="background:var(--navy-dark);border-radius:7px;padding:10px 12px;text-align:center">
+            <div style="font-size:8.5px;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px">Si cierra 3 cuentas Tier A</div>
+            <div style="font-size:22px;font-weight:900;color:var(--orange)">S/36,000</div>
+            <div style="font-size:8.5px;color:rgba(255,255,255,.5)">ingreso adicional mensual</div>
+          </div>
+
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px">
+            <div style="background:var(--success-pale);border-radius:7px;padding:8px;text-align:center;border:1px solid rgba(56,161,105,.2)">
+              <div style="font-size:16px;font-weight:800;color:var(--success)">4.4x</div>
+              <div style="font-size:8px;color:var(--t400)">ROI año 1</div>
+            </div>
+            <div style="background:var(--orange-pale);border-radius:7px;padding:8px;text-align:center;border:1px solid rgba(246,173,85,.3)">
+              <div style="font-size:16px;font-weight:800;color:var(--orange-dark)">3 meses</div>
+              <div style="font-size:8px;color:var(--t400)">Payback estimado</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-success" style="padding:10px 12px">
+        <div class="t-label" style="color:var(--success);margin-bottom:5px">Cuota trimestral acordada</div>
+        <div style="display:flex;flex-direction:column;gap:4px">
+          <div class="flex items-c gap-6"><div class="bullet bul-success"></div><div style="font-size:9px"><strong>Q1 (M1–3):</strong> S/150,000 <em>/mes</em> → S/450k trimestral</div></div>
+          <div class="flex items-c gap-6"><div class="bullet bul-success"></div><div style="font-size:9px"><strong>Q2 (M4–6):</strong> S/200,000 <em>/mes</em> → S/600k trimestral</div></div>
+          <div class="flex items-c gap-6"><div class="bullet bul-success"></div><div style="font-size:9px"><strong>Q3 (M7–9):</strong> S/250,000 <em>/mes</em> → S/750k trimestral</div></div>
+          <div class="flex items-c gap-6"><div class="bullet bul-success"></div><div style="font-size:9px"><strong>Q4 (M10–12):</strong> S/300,000 <em>/mes</em> → S/900k trimestral</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===========================
+     PÁGINA 5: ROADMAP 90 DÍAS
+     =========================== -->
+<div class="page">
+  <div class="pg-header">
+    <div class="pg-header-brand">
+      <div class="pg-header-logo">JH</div>
+      <div class="pg-header-name">Jhaz Operador Logístico</div>
+    </div>
+    <div class="pg-header-title">Roadmap de Implementación · 90 Días</div>
+    <div class="pg-header-pg">05 / 06</div>
+  </div>
+  <div class="accent-bar"></div>
+
+  <div style="flex:1;display:flex;flex-direction:column;padding:14px 20px;gap:10px;overflow:hidden">
+
+    <!-- Phase headers -->
+    <div style="display:grid;grid-template-columns:130px repeat(12,1fr);gap:0">
+      <div></div>
+      <!-- Week headers -->
+      <div style="grid-column:2/6;background:rgba(15,34,64,.08);border-radius:5px 5px 0 0;text-align:center;padding:5px;font-size:9px;font-weight:700;color:var(--navy-dark)">FASE 1 · SEMANAS 1–4 · FUNDACIÓN</div>
+      <div style="grid-column:6/10;background:rgba(232,149,10,.12);border-radius:5px 5px 0 0;text-align:center;padding:5px;font-size:9px;font-weight:700;color:var(--orange-dark);margin:0 2px">FASE 2 · SEMANAS 5–8 · CAPTACIÓN</div>
+      <div style="grid-column:10/14;background:rgba(56,161,105,.1);border-radius:5px 5px 0 0;text-align:center;padding:5px;font-size:9px;font-weight:700;color:var(--success)">FASE 3 · SEMANAS 9–12 · ESCALA</div>
+    </div>
+
+    <!-- Week labels -->
+    <div style="display:grid;grid-template-columns:130px repeat(12,1fr);gap:0;border-bottom:1px solid var(--border);padding-bottom:4px">
+      <div style="font-size:8px;font-weight:700;color:var(--t400)">ACTIVIDAD</div>
+      <div style="font-size:8px;color:var(--t400);text-align:center">S1</div>
+      <div style="font-size:8px;color:var(--t400);text-align:center">S2</div>
+      <div style="font-size:8px;color:var(--t400);text-align:center">S3</div>
+      <div style="font-size:8px;color:var(--t400);text-align:center">S4</div>
+      <div style="font-size:8px;color:var(--t400);text-align:center">S5</div>
+      <div style="font-size:8px;color:var(--t400);text-align:center">S6</div>
+      <div style="font-size:8px;color:var(--t400);text-align:center">S7</div>
+      <div style="font-size:8px;color:var(--t400);text-align:center">S8</div>
+      <div style="font-size:8px;color:var(--t400);text-align:center">S9</div>
+      <div style="font-size:8px;color:var(--t400);text-align:center">S10</div>
+      <div style="font-size:8px;color:var(--t400);text-align:center">S11</div>
+      <div style="font-size:8px;color:var(--t400);text-align:center">S12</div>
+    </div>
+
+    <!-- GANTT ROWS -->
+    <div style="flex:1;display:flex;flex-direction:column;justify-content:space-around">
+
+      <!-- Row helper: cols 130px + 12 flex cols. Bar color + start col (1-12) + span -->
+      <!-- CRM & Herramientas -->
+      <div style="display:grid;grid-template-columns:130px repeat(12,1fr);gap:0;align-items:center;height:22px">
+        <div style="font-size:9px;font-weight:600;color:var(--navy)">HubSpot CRM activo</div>
+        <div style="background:var(--navy-dark);height:16px;border-radius:4px;grid-column:2/4;display:flex;align-items:center;padding:0 7px;font-size:8px;color:white;font-weight:700">Setup + config</div>
+        <div style="background:rgba(26,54,93,.15);height:16px;border-radius:4px;grid-column:4/14;display:flex;align-items:center;padding:0 7px;font-size:8px;color:var(--navy)">Operación y optimización continua</div>
+      </div>
+
+      <!-- BD y prospección -->
+      <div style="display:grid;grid-template-columns:130px repeat(12,1fr);gap:0;align-items:center;height:22px">
+        <div style="font-size:9px;font-weight:600;color:var(--navy)">BD 10k empresas</div>
+        <div style="background:var(--navy);height:16px;border-radius:4px;grid-column:2/5;display:flex;align-items:center;padding:0 7px;font-size:8px;color:white;font-weight:700">Validación SUNAT + NeverBounce</div>
+        <div style="background:rgba(26,54,93,.15);height:16px;border-radius:4px;grid-column:5/14;display:flex;align-items:center;padding:0 7px;font-size:8px;color:var(--navy)">Segmentación y actualización mensual</div>
+      </div>
+
+      <!-- Sitio web -->
+      <div style="display:grid;grid-template-columns:130px repeat(12,1fr);gap:0;align-items:center;height:22px">
+        <div style="font-size:9px;font-weight:600;color:var(--navy)">Sitio web nuevo live</div>
+        <div style="background:var(--navy-mid);height:16px;border-radius:4px;grid-column:2/3;display:flex;align-items:center;padding:0 7px;font-size:8px;color:white;font-weight:700">Deploy</div>
+        <div style="background:rgba(35,65,114,.12);height:16px;border-radius:4px;grid-column:3/14;display:flex;align-items:center;padding:0 7px;font-size:8px;color:var(--navy)">SEO, blog 2 artículos/semana, GA4</div>
+      </div>
+
+      <!-- Google Business -->
+      <div style="display:grid;grid-template-columns:130px repeat(12,1fr);gap:0;align-items:center;height:22px">
+        <div style="font-size:9px;font-weight:600;color:var(--navy)">Google Business</div>
+        <div style="background:var(--navy-dark);height:16px;border-radius:4px;grid-column:2/3;display:flex;align-items:center;padding:0 7px;font-size:8px;color:white">Setup</div>
+        <div style="background:rgba(26,54,93,.12);height:16px;border-radius:4px;grid-column:3/7;display:flex;align-items:center;padding:0 7px;font-size:8px;color:var(--navy)">Optimización, reseñas</div>
+      </div>
+
+      <!-- Contacto Tier A -->
+      <div style="display:grid;grid-template-columns:130px repeat(12,1fr);gap:0;align-items:center;height:22px">
+        <div style="font-size:9px;font-weight:600;color:var(--navy)">Outreach Tier A</div>
+        <div style="background:rgba(26,54,93,.1);height:16px;border-radius:4px;grid-column:2/4;display:flex;align-items:center;padding:0 7px;font-size:8px;color:var(--navy)">Identificación 200 cuentas</div>
+        <div style="background:var(--orange-dark);height:16px;border-radius:4px;grid-column:4/9;display:flex;align-items:center;padding:0 7px;font-size:8px;color:white;font-weight:700">Contacto activo — 50 llamadas/semana</div>
+        <div style="background:rgba(232,149,10,.2);height:16px;border-radius:4px;grid-column:9/14;display:flex;align-items:center;padding:0 7px;font-size:8px;color:var(--orange-dark)">Seguimiento y cierre</div>
+      </div>
+
+      <!-- Apollo.io -->
+      <div style="display:grid;grid-template-columns:130px repeat(12,1fr);gap:0;align-items:center;height:22px">
+        <div style="font-size:9px;font-weight:600;color:var(--navy)">Apollo.io + LinkedIn SN</div>
+        <div style="background:rgba(232,149,10,.1);height:16px;border-radius:4px;grid-column:2/6;display:flex;align-items:center;padding:0 7px;font-size:8px;color:var(--t400)">–</div>
+        <div style="background:var(--orange-dark);height:16px;border-radius:4px;grid-column:6/14;display:flex;align-items:center;padding:0 7px;font-size:8px;color:white;font-weight:700">Secuencias automatizadas + 200 contactos/semana</div>
+      </div>
+
+      <!-- Portal cliente -->
+      <div style="display:grid;grid-template-columns:130px repeat(12,1fr);gap:0;align-items:center;height:22px">
+        <div style="font-size:9px;font-weight:600;color:var(--navy)">Portal del cliente</div>
+        <div style="background:rgba(56,161,105,.08);height:16px;border-radius:4px;grid-column:2/8;display:flex;align-items:center;padding:0 7px;font-size:8px;color:var(--t400)">MVP Make.com + WhatsApp API</div>
+        <div style="background:var(--success);height:16px;border-radius:4px;grid-column:8/14;display:flex;align-items:center;padding:0 7px;font-size:8px;color:white;font-weight:700">Fase 1 live — elimina grupos WA</div>
+      </div>
+
+      <!-- Dashboard métricas -->
+      <div style="display:grid;grid-template-columns:130px repeat(12,1fr);gap:0;align-items:center;height:22px">
+        <div style="font-size:9px;font-weight:600;color:var(--navy)">Dashboard métricas</div>
+        <div style="background:rgba(56,161,105,.08);height:16px;border-radius:4px;grid-column:2/10;display:flex;align-items:center;padding:0 7px;font-size:8px;color:var(--t400)">–</div>
+        <div style="background:var(--success);height:16px;border-radius:4px;grid-column:10/14;display:flex;align-items:center;padding:0 7px;font-size:8px;color:white;font-weight:700">Revenue + pipeline semanal</div>
+      </div>
+    </div>
+
+    <!-- Milestones -->
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px">
+      <div style="background:rgba(15,34,64,.06);border-radius:8px;padding:9px 12px;border-left:3px solid var(--navy-dark)">
+        <div style="font-size:9px;font-weight:700;color:var(--navy-dark);margin-bottom:4px">🎯 Semana 2 — Fundación</div>
+        <div style="font-size:8.5px;color:var(--t600)">CRM activo · BD validada · Site live · Google Business · Contacto 50 cuentas Tier A</div>
+      </div>
+      <div style="background:rgba(232,149,10,.08);border-radius:8px;padding:9px 12px;border-left:3px solid var(--orange-dark)">
+        <div style="font-size:9px;font-weight:700;color:var(--orange-dark);margin-bottom:4px">🚀 Semana 6 — Primer cierre</div>
+        <div style="font-size:8.5px;color:var(--t600)">Apollo.io activo · LinkedIn SN · 3 lead magnets publicados · 1er cliente nuevo firmado</div>
+      </div>
+      <div style="background:rgba(56,161,105,.08);border-radius:8px;padding:9px 12px;border-left:3px solid var(--success)">
+        <div style="font-size:9px;font-weight:700;color:var(--success);margin-bottom:4px">📈 Semana 12 — Escala</div>
+        <div style="font-size:8.5px;color:var(--t600)">Portal cliente live · Pipeline S/60k+/mes · Dashboard activo · 5+ clientes nuevos</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===========================
+     PÁGINA 6: KPIs Y PROYECCIONES
+     =========================== -->
+<div class="page" style="page-break-after:avoid;break-after:avoid">
+  <div class="pg-header">
+    <div class="pg-header-brand">
+      <div class="pg-header-logo">JH</div>
+      <div class="pg-header-name">Jhaz Operador Logístico</div>
+    </div>
+    <div class="pg-header-title">KPIs y Proyecciones de Crecimiento</div>
+    <div class="pg-header-pg">06 / 06</div>
+  </div>
+  <div class="accent-bar"></div>
+
+  <div style="flex:1;display:grid;grid-template-columns:1fr 1.4fr 1fr;gap:14px;padding:14px 20px;overflow:hidden">
+
+    <!-- Left: KPI Cards con números reales -->
+    <div class="flex col gap-8">
+      <div class="t-label section-tag t-navy">Cuotas y comisiones reales</div>
+
+      <div class="kpi-card">
+        <div class="kpi-num" style="color:var(--navy)">S/2.7M</div>
+        <div class="kpi-label">Cuota total facturación año 1</div>
+        <div class="kpi-note">S/150k/mes (M1–3) · S/200k/mes (M4–6) · S/250k/mes (M7–9) · S/300k/mes (M10–12)</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-num" style="color:var(--orange-dark)">1% / 2%</div>
+        <div class="kpi-label">Comisión sobre facturación sin IGV</div>
+        <div class="kpi-note">1% clientes inactivos reactivados · 2% clientes nuevos</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-num" style="color:var(--success)">~S/45k</div>
+        <div class="kpi-label">Comisión estimada año 1</div>
+        <div class="kpi-note">Mix progresivo: más reactivación en Q1 → mayoría nuevos en Q4</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-num" style="color:var(--navy)">S/6,000</div>
+        <div class="kpi-label">Comisión mensual en Q4 (100% nuevos)</div>
+        <div class="kpi-note">S/300,000/mes × 2% · Al cumplir cuota con clientes nuevos</div>
+      </div>
+    </div>
+
+    <!-- Center: Cuota + comisiones reales -->
+    <div class="flex col gap-8">
+      <div class="t-label section-tag t-navy">Cuota de facturación acordada por trimestre · Base de cálculo de comisiones</div>
+
+      <div class="card" style="padding:14px;flex:1">
+        <!-- Quarterly bar chart — labels BELOW bars, no overflow -->
+        <div style="display:flex;gap:16px;align-items:flex-end">
+
+          <!-- Q1 -->
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center">
+            <!-- Solo la barra dentro del espacio acotado -->
+            <div style="width:100%;display:flex;flex-direction:column;justify-content:flex-end;height:72px;border-bottom:1.5px solid var(--border);position:relative">
+              <!-- Línea ref -->
+              <div style="position:absolute;bottom:36px;left:-8px;right:-8px;border-top:1px dashed rgba(0,0,0,.1)"></div>
+              <div style="width:100%;background:var(--navy);height:36px;border-radius:4px 4px 0 0"></div>
+            </div>
+            <!-- Labels debajo -->
+            <div style="margin-top:5px;text-align:center">
+              <div style="font-size:10px;font-weight:800;color:var(--navy)">S/150k/mes</div>
+              <div style="font-size:7.5px;color:var(--t400);margin-top:1px">Q1 · M1–3</div>
+              <div style="font-size:7.5px;color:var(--t400)">Total: S/450k</div>
+              <div style="margin-top:4px;background:rgba(26,54,93,.08);border-radius:4px;padding:3px 6px;font-size:7.5px;font-weight:700;color:var(--navy)">Comisión: S/3k–4.5k/mes</div>
+            </div>
+          </div>
+
+          <!-- Q2 -->
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center">
+            <div style="width:100%;display:flex;flex-direction:column;justify-content:flex-end;height:72px;border-bottom:1.5px solid var(--border)">
+              <div style="width:100%;background:var(--navy-mid);height:48px;border-radius:4px 4px 0 0"></div>
+            </div>
+            <div style="margin-top:5px;text-align:center">
+              <div style="font-size:10px;font-weight:800;color:var(--navy-mid)">S/200k/mes</div>
+              <div style="font-size:7.5px;color:var(--t400);margin-top:1px">Q2 · M4–6</div>
+              <div style="font-size:7.5px;color:var(--t400)">Total: S/600k</div>
+              <div style="margin-top:4px;background:rgba(35,65,114,.08);border-radius:4px;padding:3px 6px;font-size:7.5px;font-weight:700;color:var(--navy-mid)">Comisión: S/4k–6k/mes</div>
+            </div>
+          </div>
+
+          <!-- Q3 -->
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center">
+            <div style="width:100%;display:flex;flex-direction:column;justify-content:flex-end;height:72px;border-bottom:1.5px solid var(--border)">
+              <div style="width:100%;background:var(--orange-dark);height:60px;border-radius:4px 4px 0 0"></div>
+            </div>
+            <div style="margin-top:5px;text-align:center">
+              <div style="font-size:10px;font-weight:800;color:var(--orange-dark)">S/250k/mes</div>
+              <div style="font-size:7.5px;color:var(--t400);margin-top:1px">Q3 · M7–9</div>
+              <div style="font-size:7.5px;color:var(--t400)">Total: S/750k</div>
+              <div style="margin-top:4px;background:rgba(232,149,10,.1);border-radius:4px;padding:3px 6px;font-size:7.5px;font-weight:700;color:var(--orange-dark)">Comisión: S/5k–7.5k/mes</div>
+            </div>
+          </div>
+
+          <!-- Q4 -->
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center">
+            <div style="width:100%;display:flex;flex-direction:column;justify-content:flex-end;height:72px;border-bottom:1.5px solid var(--border)">
+              <div style="width:100%;background:var(--success);height:72px;border-radius:4px 4px 0 0"></div>
+            </div>
+            <div style="margin-top:5px;text-align:center">
+              <div style="font-size:10px;font-weight:800;color:var(--success)">S/300k/mes</div>
+              <div style="font-size:7.5px;color:var(--t400);margin-top:1px">Q4 · M10–12</div>
+              <div style="font-size:7.5px;color:var(--t400)">Total: S/900k</div>
+              <div style="margin-top:4px;background:rgba(56,161,105,.1);border-radius:4px;padding:3px 6px;font-size:7.5px;font-weight:700;color:var(--success)">Comisión: S/6k–9k/mes</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tabla de comisiones REALES acordadas con la dueña -->
+      <div class="card" style="padding:12px 14px">
+        <div class="flex items-c justify-b" style="margin-bottom:8px">
+          <div class="t-label t-navy">Comisiones acordadas · Sobre monto facturado sin IGV</div>
+          <span class="tag tag-success">Vigente desde mes 1</span>
+        </div>
+        <table style="width:100%;border-collapse:collapse;font-size:9px">
+          <thead>
+            <tr style="background:var(--navy);color:white">
+              <th style="padding:6px 8px;text-align:left;border-radius:5px 0 0 5px;font-weight:600">Tipo de cliente</th>
+              <th style="padding:6px 8px;text-align:center;font-weight:600">% Comisión</th>
+              <th style="padding:6px 8px;text-align:left;border-radius:0 5px 5px 0;font-weight:600">Definición</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom:1px solid var(--border)">
+              <td style="padding:7px 8px;font-weight:700;color:var(--navy)">Clientes inactivos reactivados</td>
+              <td style="padding:7px 8px;text-align:center;font-size:16px;font-weight:900;color:var(--orange-dark)">1%</td>
+              <td style="padding:7px 8px;color:var(--t600)">Clientes que ya tiene la empresa pero que llevan tiempo sin facturar por falta de mantenimiento comercial</td>
+            </tr>
+            <tr style="background:var(--surface)">
+              <td style="padding:7px 8px;font-weight:700;color:var(--navy)">Clientes nuevos captados</td>
+              <td style="padding:7px 8px;text-align:center;font-size:16px;font-weight:900;color:var(--success)">2%</td>
+              <td style="padding:7px 8px;color:var(--t600)">Clientes nuevos que el ejecutivo comercial trae directamente — sin relación previa con Jhaz</td>
+            </tr>
+          </tbody>
+        </table>
+        <div style="margin-top:8px;background:rgba(26,54,93,.06);border-radius:6px;padding:7px 10px;font-size:8.5px;color:var(--t600)">
+          ⚡ <strong style="color:var(--navy)">Base de cálculo:</strong> monto total facturado <strong>sin IGV</strong> · Comisión sobre facturación real cobrada · Se aplica desde el primer sol facturado en cada trimestre
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: Próximos pasos + resumen ejecutivo -->
+    <div class="flex col gap-8">
+      <div class="t-label section-tag t-navy">Próximos pasos inmediatos</div>
+
+      <div style="flex:1;display:flex;flex-direction:column;gap:7px">
+        <!-- Steps numbered -->
+        <div style="display:flex;align-items:flex-start;gap:10px">
+          <div style="width:22px;height:22px;background:var(--navy-dark);border-radius:999px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:var(--orange);flex-shrink:0">1</div>
+          <div>
+            <div style="font-size:10px;font-weight:700;color:var(--navy)">Esta semana</div>
+            <div style="font-size:8.5px;color:var(--t600);line-height:1.4">Crear cuenta HubSpot Free · Subir sitio nuevo a GitHub · Crear Google Business Profile · Instalar GA4</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:10px">
+          <div style="width:22px;height:22px;background:var(--navy-mid);border-radius:999px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:white;flex-shrink:0">2</div>
+          <div>
+            <div style="font-size:10px;font-weight:700;color:var(--navy)">Semana 2</div>
+            <div style="font-size:8.5px;color:var(--t600);line-height:1.4">Cargar BD en HubSpot · Segmentar Tier A (200 cuentas) · Primeras 50 llamadas · Email introductorio</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:10px">
+          <div style="width:22px;height:22px;background:var(--orange-dark);border-radius:999px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:white;flex-shrink:0">3</div>
+          <div>
+            <div style="font-size:10px;font-weight:700;color:var(--navy)">Mes 2</div>
+            <div style="font-size:8.5px;color:var(--t600);line-height:1.4">Activar Apollo.io · LinkedIn Sales Navigator · 3 lead magnets publicados · Primera propuesta formal enviada</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:10px">
+          <div style="width:22px;height:22px;background:var(--success);border-radius:999px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:white;flex-shrink:0">4</div>
+          <div>
+            <div style="font-size:10px;font-weight:700;color:var(--navy)">Mes 3</div>
+            <div style="font-size:8.5px;color:var(--t600);line-height:1.4">Portal cliente MVP live · 1er informe ROI a la dueña · Revisión comisiones · 5+ clientes en pipeline activo</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Resumen ejecutivo con números reales -->
+      <div style="background:var(--navy-dark);border-radius:10px;padding:14px">
+        <div style="font-size:10px;font-weight:700;color:var(--orange);margin-bottom:8px;text-transform:uppercase;letter-spacing:.1em">Resumen ejecutivo</div>
+        <div style="font-size:9px;color:rgba(255,255,255,.7);line-height:1.55;margin-bottom:10px">
+          Los activos ya existen. El objetivo es <strong style="color:white">cumplir la cuota de S/150,000 por mes desde el primer mes</strong>, creciendo S/50k/mes cada trimestre — priorizando clientes nuevos (2%) para maximizar la comisión mensual de S/3,000 a S/6,000.
+        </div>
+        <div class="divider-h" style="background:rgba(255,255,255,.12);margin-bottom:10px"></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px">
+          <div style="text-align:center">
+            <div style="font-size:18px;font-weight:900;color:var(--orange)">S/2.7M</div>
+            <div style="font-size:8px;color:rgba(255,255,255,.5)">Cuota total facturación año 1</div>
+          </div>
+          <div style="text-align:center">
+            <div style="font-size:18px;font-weight:900;color:white">~S/54k</div>
+            <div style="font-size:8px;color:rgba(255,255,255,.5)">Comisión máxima año 1 (100% nuevos)</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-align:center;padding:8px;background:var(--surface);border-radius:8px;border:1.5px solid var(--border)">
+        <div style="font-size:9px;color:var(--t400)">Documento preparado por <strong style="color:var(--navy)">Frank Espinoza</strong> · Ejecutivo Comercial</div>
+        <div style="font-size:8.5px;color:var(--t400);margin-top:2px">Jhaz Operador Logístico S.A.C. · comercial@jhaz.com.pe · +51 991 913 935</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// Print helper
+if(window.location.search.includes('print')) window.print();
+</script>
+</body>
+</html>
