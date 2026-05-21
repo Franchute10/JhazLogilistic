@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es-PE">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Acceso clientes | Jhaz Operador Logístico</title>
+<meta name="description" content="Acceso al portal del cliente de Jhaz. Tracking en tiempo real, documentos y estado de tus envíos.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..600,0..100;1,9..144,300..600,0..100&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/styles.css">
+</head>
+<body class="portal-bg">
+
+<div class="login-shell">
+  <div class="login-card">
+    <a href="../index.html" class="login-brand">
+      <span class="brand-mark">Jhaz</span>
+      <span class="brand-tag">Portal Cliente</span>
+    </a>
+
+    <h1 class="login-title">Bienvenido de vuelta</h1>
+    <p class="login-sub">Ingresa para ver tus envíos en tiempo real y descargar tus documentos.</p>
+
+    <form class="login-form" onsubmit="event.preventDefault(); window.location.href='portal-dashboard.html';">
+      <div class="field">
+        <label class="field-label" for="email">Correo corporativo</label>
+        <input type="email" id="email" class="field-input" placeholder="tu@empresa.com" required>
+      </div>
+      <div class="field">
+        <label class="field-label" for="pwd">Contraseña</label>
+        <input type="password" id="pwd" class="field-input" placeholder="••••••••" required>
+      </div>
+      <button type="submit" class="quote-submit" style="margin-top: 4px;">
+        Ingresar al portal <span>→</span>
+      </button>
+    </form>
+
+    <div class="login-divider">o</div>
+
+    <button type="button" class="btn btn-secondary" style="width: 100%; justify-content: center;" onclick="window.location.href='portal-dashboard.html';">
+      Enviarme enlace mágico al correo
+    </button>
+
+    <div class="login-link" style="margin-top: 28px;">
+      <a href="#">¿Olvidaste tu contraseña?</a>
+    </div>
+
+    <div class="login-link" style="padding-top: 24px; border-top: 1px solid var(--border); margin-top: 28px;">
+      ¿Aún no eres cliente? <a href="../index.html#cotizar">Cotiza tu primer envío</a>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
